@@ -8,40 +8,18 @@
     tools:context="segproject.tmmpl.UserLogin"
     tools:showIn="@layout/activity_user_login">
 
+
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/newUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Add"
-        android:layout_below="@+id/editTextUsername"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addButton"
-        android:text="Users"
-        android:textAlignment="center"
-        />
+        android:text="Create New User" />
 
     <ListView
         android:id="@+id/listViewUsers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView">
-    </ListView>
-
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:hint="Enter username" />
+        android:layout_below="@+id/textView"></ListView>
 
 
 </RelativeLayout>
