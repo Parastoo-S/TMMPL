@@ -5,7 +5,7 @@
 
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter name" />
