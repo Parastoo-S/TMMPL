@@ -53,9 +53,9 @@ public class UserLogin extends AppCompatActivity {
 //        });
 
 
-        editTextUsername = (EditText) findViewById(R.id.editTextName);
+        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
 //        editAvatartId = (EditText) findViewById(R.id.editAvatartId);
-        
+
         listViewUsers = (ListView) findViewById(R.id.listViewUsers);
         buttonAddUser = (Button) findViewById(R.id.addButton);
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
@@ -118,8 +118,8 @@ public class UserLogin extends AppCompatActivity {
                     users.add(user);
                 }
 
-                UserList productsAdapter = new UserList(UserLogin.this,users);
-                listViewUsers.setAdapter(productsAdapter);
+                UserList usersAdapter = new UserList(UserLogin.this,users);
+                listViewUsers.setAdapter(usersAdapter);
             }
 
             @Override
@@ -136,7 +136,7 @@ public class UserLogin extends AppCompatActivity {
         final View dialogView = inflater.inflate(R.layout.update_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextUsername);
+        final EditText editTextUsername = (EditText) dialogView.findViewById(R.id.editTextUsername);
 //        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateUser);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteUser);
@@ -148,7 +148,7 @@ public class UserLogin extends AppCompatActivity {
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = editTextName.getText().toString().trim();
+                String name = editTextUsername.getText().toString().trim();
 //                double price = Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
                 if (!TextUtils.isEmpty(name)) {
                     updateUser(userId, name);
