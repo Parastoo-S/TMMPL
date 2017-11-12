@@ -57,7 +57,7 @@ public class UserLogin extends AppCompatActivity {
 //        editAvatartId = (EditText) findViewById(R.id.editAvatartId);
 
         listViewUsers = (ListView) findViewById(R.id.listViewUsers);
-        buttonAddUser = (Button) findViewById(R.id.addButton);
+        buttonAddUser = (Button) findViewById(R.id.newUser);
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class UserLogin extends AppCompatActivity {
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addUser();
+                showNewUserDialog();
             }
         });
 
@@ -166,6 +166,31 @@ public class UserLogin extends AppCompatActivity {
         });
     }
 
+    private void showNewUserDialog() {
+
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.new_user_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText newTextUsername = (EditText) dialogView.findViewById(R.id.editTextUsername);
+//        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
+        final Button addButton = (Button) dialogView.findViewById(R.id.addButton);
+//        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteUser);
+
+//        dialogBuilder.setTitle(username);
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addUser(newTextUsername.getText().toString().trim());
+                b.dismiss();
+            }
+        });
+    }
+
 
     private void updateUser(String id, String username) {
 
@@ -187,8 +212,8 @@ public class UserLogin extends AppCompatActivity {
         return true;
     }
 
-    private void addUser() {
-        String username = editTextUsername.getText().toString().trim();
+    private void addUser(String name) {
+        String username = name;
 //        double price=Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
 
         if(!TextUtils.isEmpty(username)){
@@ -197,7 +222,7 @@ public class UserLogin extends AppCompatActivity {
 
             databaseUsers.child(id).setValue(user);
 
-            editTextUsername.setText("");
+//                .setText("");
 //            editTextPrice.setText("");
             Toast.makeText(this,"User added", Toast.LENGTH_LONG).show();
         } else{
