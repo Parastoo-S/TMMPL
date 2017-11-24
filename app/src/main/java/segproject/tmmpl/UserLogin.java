@@ -1,5 +1,6 @@
 package segproject.tmmpl;
 
+import android.media.Image;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +21,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -140,8 +143,11 @@ public class UserLogin extends AppCompatActivity {
 //        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateUser);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteUser);
+        final TextView title = (TextView) dialogView.findViewById(R.id.selfUsername);
+//        final ImageView avatar = (ImageView) dialogView.findViewById(R.id.editAvatar);
 
-        dialogBuilder.setTitle(username);
+//        dialogBuilder.setTitle(username);
+        title.setText(username);
         final AlertDialog b = dialogBuilder.create();
         b.show();
 
