@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp">
 
+
+    <TextView
+        android:id="@+id/selfUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/editAvatar"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--app:srcCompat="@mipmap/if_empty" />-->
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter name" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:hint="Enter name"
+        android:textColor="@color/color2" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <Button
@@ -20,14 +54,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Update" />
+            android:backgroundTint="@color/color4"
+            android:fontFamily="sans-serif"
+            android:text="Update"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonDeleteUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Delete" />
+            android:backgroundTint="@color/color3"
+            android:fontFamily="sans-serif"
+            android:text="Delete"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
