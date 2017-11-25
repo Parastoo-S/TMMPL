@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     String[] taskDescription = {"Deadline: 11/15/2017", "Deadline: 11/12/2017", "Note: Vaccume afterwards too", "Deadline: 11/11/2017 at 3:15pm", "Deadline: 11/10/2017", "Note: Do it ASAP"};
     Integer[] userProfileImage = {R.drawable.i1, R.drawable.i2, R.drawable.i6, R.drawable.plus, R.drawable.i4, R.drawable.i3};
     CheckBox isComplete;
-    FloatingActionButton addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         CustomListview customListview = new CustomListview(this, taskName, taskDescription, userProfileImage, isComplete);
         lst.setAdapter(customListview);
 
-        FloatingActionButton next = (FloatingActionButton) findViewById(R.id.addTaskFab);
-        next.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
+        addTaskFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), AddTask.class);
                 startActivityForResult(myIntent, 0);
