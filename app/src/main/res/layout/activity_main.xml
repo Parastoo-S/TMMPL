@@ -14,23 +14,23 @@
         tools:layout_editor_absoluteX="8dp">
 
         <ListView
-            android:id="@+id/listview"
+            android:id="@+id/addedTaskListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/showSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Only show my tasks"
             android:layout_marginLeft="290dp"
+            android:text="Only show my tasks"
             tools:layout_editor_absoluteX="282dp"
             tools:layout_editor_absoluteY="8dp" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+            android:id="@+id/addTaskFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

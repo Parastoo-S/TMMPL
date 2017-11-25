@@ -12,37 +12,37 @@
         android:padding="15dp">
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/isCompleteCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/tvdescription" />
+            android:layout_alignTop="@+id/taskDescriptionTextView" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/userImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_weight="0.11"/>
 
         <TextView
-            android:id="@+id/tvfruitname"
+            android:id="@+id/taskNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_toRightOf="@+id/imageView"
+            android:layout_toEndOf="@+id/userImageView"
+            android:layout_toRightOf="@+id/userImageView"
             android:textColor="#333"
             android:textSize="22dp"
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/tvdescription"
+            android:id="@+id/taskDescriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvfruitname"
-            android:layout_toEndOf="@+id/imageView"
-            android:layout_toRightOf="@+id/imageView"
+            android:layout_below="@+id/taskNameTextView"
+            android:layout_toEndOf="@+id/userImageView"
+            android:layout_toRightOf="@+id/userImageView"
             android:layout_weight="1"
             android:paddingLeft="5dp"
             android:textColor="#333"/>
