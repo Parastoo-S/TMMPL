@@ -6,6 +6,157 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="segproject.tmmpl.Shopping"
-    tools:showIn="@layout/activity_shopping">
+    tools:showIn="@layout/activity_shopping"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:contextClickable="true"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="0.19"
+            android:orientation="horizontal">
+
+            <TabHost
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="369dp"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible" />
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/Shop"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/Task"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/People"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </TabHost>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newidk"
+            android:layout_width="350dp"
+            android:layout_height="379dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:animateLayoutChanges="false"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView" />
+
+            <ListView
+                android:id="@+id/shoppingList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:choiceMode="singleChoice" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/new_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3.70"
+            android:clickable="false"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/newitembtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="495dp"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="6"
+                    android:clickable="true"
+                    android:onClick="btn_newitembtn_onClick"
+                    android:textAlignment="center"
+                    app:backgroundTint="@android:color/white"
+                    app:elevation="10dp"
+                    app:rippleColor="@android:color/background_dark"
+                    app:srcCompat="@android:drawable/ic_input_add"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="455dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:layout_weight="0.72"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="327dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/usersNewItem"
+                        style="@style/Widget.AppCompat.AutoCompleteTextView"
+                        android:layout_width="276dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:hint="new item"
+                        android:selectAllOnFocus="false"
+                        android:singleLine="true"
+                        android:textIsSelectable="false" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
