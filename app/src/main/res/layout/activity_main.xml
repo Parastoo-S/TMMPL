@@ -13,6 +13,12 @@
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
 
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
         <ListView
             android:id="@+id/addedTaskListView"
             android:layout_width="match_parent"
