@@ -1,4 +1,4 @@
-package com.example.mahdi.takspage;
+package segproject.tmmpl;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.mahdi.takspage", appContext.getPackageName());
+        assertEquals("segproject.tmmpl", appContext.getPackageName());
     }
 }
