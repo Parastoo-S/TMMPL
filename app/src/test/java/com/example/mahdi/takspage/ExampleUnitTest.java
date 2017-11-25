@@ -1,4 +1,4 @@
-package segproject.tmmpl;
+package com.example.mahdi.takspage;
 
 import org.junit.Test;
 
