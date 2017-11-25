@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
@@ -32,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         CustomListview customListview = new CustomListview(this, taskName, taskDescription, userProfileImage, isComplete);
         lst.setAdapter(customListview);
 
-        Button button = (Button) findViewById(R.id.button4);
-        button.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
+        addTaskFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), AddTask.class);
                 startActivityForResult(myIntent, 0);
