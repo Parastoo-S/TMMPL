@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "821253075260-75lkcmved5u042phe0uvj3k65ii91au9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "segproject.tmmpl",
+            "certificate_hash": "9588680160e13f75c6b24b537907352697e30d0d"
+          }
+        },
+        {
           "client_id": "821253075260-s0viirqtbhq3mfamrcd1lmqrsrcgtgir.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
