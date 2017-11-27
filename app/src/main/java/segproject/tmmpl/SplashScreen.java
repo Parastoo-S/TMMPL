@@ -9,7 +9,7 @@ public class SplashScreen extends AppCompatActivity {
     //private TextView textView;
     //private ImageView imageView;
 
-    private static int SPLASH_TIME_OUT=5000;
+    private static int SPLASH_TIME_OUT=4000;
 
 
     @Override
