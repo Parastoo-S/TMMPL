@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewTaskName" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewDescription" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>
+
+    <TextView
+        android:id="@+id/dueDateTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/statusTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/completed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Completed" />
+</LinearLayout>
+
