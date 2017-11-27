@@ -55,7 +55,6 @@ public class UserLogin extends AppCompatActivity {
 //            }
 //        });
 
-
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
 //        editAvatartId = (EditText) findViewById(R.id.editAvatartId);
 
@@ -80,6 +79,8 @@ public class UserLogin extends AppCompatActivity {
                 return true;
             }
         });
+
+
 
 
 
