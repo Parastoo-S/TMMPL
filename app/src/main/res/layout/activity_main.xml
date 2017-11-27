@@ -7,44 +7,5 @@
     android:background="@color/colorPrimaryDark"
     tools:context="com.example.mahdi.takspage.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-
-        <ListView
-            android:id="@+id/addedTaskListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="8dp" />
-
-        <Switch
-            android:id="@+id/showSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="290dp"
-            android:text="Only show my tasks"
-            tools:layout_editor_absoluteX="282dp"
-            tools:layout_editor_absoluteY="8dp" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/addTaskFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="455dp"
-            android:onClick="onClick"
-            android:src="@drawable/plus"
-            app:backgroundTint="@color/colorAccent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="328dp">
-
-
-        </android.support.design.widget.FloatingActionButton>
-
-    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
