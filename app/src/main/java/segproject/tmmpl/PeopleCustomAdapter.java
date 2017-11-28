@@ -50,7 +50,7 @@ public class PeopleCustomAdapter extends ArrayAdapter {
 
         userNameTextField.setText(myUsersName.get(position).getUsername());
         //taskCountTextField.setText("Allocated Tasks: " + completed[position]);
-        //userImage.setImageResource(avatars[position]);
+        userImage.setImageResource(avatars[position % avatars.length]);
         //nextTaskTextField.setText("Next Task: " + nextTasks[position]);
 
 

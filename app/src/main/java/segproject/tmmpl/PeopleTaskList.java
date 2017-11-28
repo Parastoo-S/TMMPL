@@ -132,7 +132,7 @@ public class PeopleTaskList extends AppCompatActivity {
                 }
 
                 String[] choreList = {"Alex", "Rex", "Alise", "Jack"};
-                int[] avatarList = {R.drawable.i1, R.drawable.i2, R.drawable.i6, R.drawable.i3};
+                int[] avatarList = {R.drawable.i1, R.drawable.i2, R.drawable.i6, R.drawable.i3, R.drawable.i5, R.drawable.i4};
                 String[] completedList = {"0", "3", "1", "10"};
                 String[] nextTaskList = {"Clean up kitchen", "Take out garbage", "----", "Buy new TV",};
 
