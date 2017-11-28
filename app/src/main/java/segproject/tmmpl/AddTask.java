@@ -3,14 +3,17 @@ package segproject.tmmpl;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -30,9 +34,12 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     int day, month, year, hour, minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
 
+    Button assignUser;
     TextView datesPicked;
     TextView formatted;
     long dueDate;
+    ArrayList<User> users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         saveTaskButton = (Button) findViewById(R.id.saveTaskButton);
         pickDateTime = (Button) findViewById(R.id.pickDateTime);
 
+        assignUser = (Button) findViewById(R.id.assignUser);
+
         formatted = (TextView) findViewById(R.id.formatted);
 
         saveTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +61,13 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             public void onClick(View view) {
                 addTask();
                 finish();
+            }
+        });
+
+        assignUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAssignUserDialog();
             }
         });
 
@@ -66,7 +82,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AddTask.this, AddTask.this, year, month, day);
                 datePickerDialog.show();
-
 
             }
         });
@@ -114,15 +129,20 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     private void addTask() {
         String name = editTextTaskName.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
-
+        User activeUser = Singleton.getInstance();
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
-            Task task = new Task(id, name, description, dueDate);
+            Task task = new Task(id, name, description, dueDate, activeUser);
 
             databaseTasks.child(id).setValue(task);
 
             editTextTaskName.setText("");
             editTextDescription.setText("");
+
+            task.addUser(activeUser);
+            activeUser.addCreatedTask(task);
+
+
             Toast.makeText(this,"task added", Toast.LENGTH_LONG).show();
         } else{
 
@@ -131,6 +151,25 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
     }
 
+    private void showAssignUserDialog(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+
+
+        final View dialogView = inflater.inflate(R.layout.assign_user_dialog, null);
+        ListView possibleAssignees = (ListView) dialogView.findViewById(R.id.possibleAssignees);
+        databaseTasks = FirebaseDatabase.getInstance().getReference("users");
+        users = new ArrayList<>();
+        UserList usersAdapter = new UserList(AddTask.this,users);
+
+        possibleAssignees.setAdapter(usersAdapter);
+        dialogBuilder.setView(dialogView);
+
+
+        final AlertDialog b = dialogBuilder.create();
+        b.show();
+
+    }
 
 
 }
