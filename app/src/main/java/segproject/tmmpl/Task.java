@@ -3,6 +3,8 @@ package segproject.tmmpl;
 import java.security.Timestamp;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
 /**
  * Created by Parastoo on 11/25/2017.
  */
@@ -14,7 +16,7 @@ public class Task {
     private User _assignedUser;
     private String _description;
     private long _dueDate;
-    private String[] _equipments;
+    private List<String> _equipments;
     private Boolean _completed;
 
     private Collection<User> users;
@@ -44,7 +46,7 @@ public class Task {
         _dueDate = dueDate;
         _completed = completed;
     }
-    public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, String[] equipments, Boolean completed){
+    public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, List<String> equipments, Boolean completed){
 
         _id = id;
         _taskname = taskname;
@@ -105,11 +107,11 @@ public class Task {
         return _dueDate;
     }
 
-    public void setEquipments(String[] equipments){
+    public void setEquipments(List<String> equipments){
         _equipments = equipments;
     }
 
-    public String[] getequipments(){
+    public List<String> getequipments(){
         return _equipments;
     }
 

@@ -35,12 +35,25 @@
             android:ems="10"
             android:inputType="textMultiLine" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Required Equipment (Use commas to seperate equipment):" />
+
+        <EditText
+            android:id="@+id/editTextEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
         <Button
             android:id="@+id/pickDateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="showDatePickerDialog"
-            android:text="Pick" />
+            android:text="due date" />
 
         <TextView
             android:id="@+id/formatted"
@@ -58,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Task" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -22,12 +22,18 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 import java.util.ArrayList;
+
+import java.util.Arrays;
+
 import java.util.Calendar;
+import java.util.List;
 
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     EditText editTextTaskName;
     EditText editTextDescription;
+    EditText editTextEquipment;
     Button saveTaskButton;
     DatabaseReference databaseTasks;
     Button pickDateTime;
@@ -48,6 +54,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
         editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
         editTextDescription = (EditText) findViewById(R.id.editTextDescription);
+
+        editTextEquipment = (EditText) findViewById(R.id.editTextEquipment);
+
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         saveTaskButton = (Button) findViewById(R.id.saveTaskButton);
         pickDateTime = (Button) findViewById(R.id.pickDateTime);
@@ -129,12 +138,20 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     private void addTask() {
         String name = editTextTaskName.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
+
         User activeUser = Singleton.getInstance();
+
+        List<String> equipment = Arrays.asList(editTextEquipment.getText().toString().split(","));
+
+
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
             Task task = new Task(id, name, description, dueDate, activeUser);
 
             databaseTasks.child(id).setValue(task);
+            for(String add : equipment){
+                databaseTasks.child(id).child("equipment").push().setValue(add);
+            }
 
             editTextTaskName.setText("");
             editTextDescription.setText("");
@@ -142,6 +159,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             task.addUser(activeUser);
             activeUser.addCreatedTask(task);
 
+
+            editTextEquipment.setText("");
 
             Toast.makeText(this,"task added", Toast.LENGTH_LONG).show();
         } else{
