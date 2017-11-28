@@ -48,6 +48,7 @@ public class TaskPage extends AppCompatActivity {
     DatabaseReference databaseTasks;
     List<Task> tasks;
     CheckBox completed;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +69,8 @@ public class TaskPage extends AppCompatActivity {
 //        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
+        currentUser = User.getActiveUser();
 
-        TextView activeUser = (TextView) findViewById(R.id.activeUser);
-        activeUser.setText(User.getActiveUser().getUsername());
 
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
@@ -85,16 +85,9 @@ public class TaskPage extends AppCompatActivity {
 //            }
 //        });
 
-//        listViewTasks.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Task task = tasks.get(i);
-//                showUpdateDeleteDialog(task);
-//                return true;
-//            }
-//        });
 
-
+//        TextView activeUser = (TextView) findViewById(R.id.activeUser);
+//        activeUser.setText(currentUser.getUsername());
 
 
 
