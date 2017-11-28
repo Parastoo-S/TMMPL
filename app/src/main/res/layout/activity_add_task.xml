@@ -48,10 +48,16 @@
             android:layout_height="wrap_content" />
 
         <Button
+            android:id="@+id/assignUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AssignUser" />
+
+        <Button
             android:id="@+id/saveTaskButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Add Task" />
     </LinearLayout>
 
 </LinearLayout>
