@@ -139,25 +139,27 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         String name = editTextTaskName.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
 
-        User activeUser = Singleton.getInstance();
+       // User activeUser = Singleton.getInstance();
 
         List<String> equipment = Arrays.asList(editTextEquipment.getText().toString().split(","));
 
 
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
-            Task task = new Task(id, name, description, dueDate, activeUser);
+            Task task = new Task(id, name, description, dueDate,equipment);
 
             databaseTasks.child(id).setValue(task);
-            for(String add : equipment){
-                databaseTasks.child(id).child("equipment").push().setValue(add);
-            }
+
+//            for(String add : equipment){
+//                databaseTasks.child(id).child("equipment").push().setValue(add);
+//            }
 
             editTextTaskName.setText("");
             editTextDescription.setText("");
 
-//            task.addCreatorUser(activeUser);
+           // task.addCreatorUser(User.getActiveUser());
 //            activeUser.addCreatedTask(task);
+            //User.getActiveUser().addCreatedTask(task);
 
 
             editTextEquipment.setText("");

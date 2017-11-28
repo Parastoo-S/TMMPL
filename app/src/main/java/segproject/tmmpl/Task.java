@@ -16,7 +16,7 @@ public class Task {
     private User _assignedUser;
     private String _description;
     private long _dueDate;
-    private List<String> _equipments;
+    private List<String> _equipment;
     private Boolean _completed;
 
     private Collection<User> assignedUser;
@@ -28,14 +28,15 @@ public class Task {
     public Task() {
     }
 
-    public Task(String id, String taskname, String description, long dueDate, User creator){
+    public Task(String id, String taskname, String description, long dueDate, List<String> equipment){
 
         _id = id;
         _taskname = taskname;
         _description = description;
         _dueDate = dueDate;
         _completed = false;
-        _creator = creator;
+        _creator = User.getActiveUser();
+        _equipment = equipment;
     }
     public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, Boolean completed){
 
@@ -55,7 +56,7 @@ public class Task {
         _assignedUser = assignedUser;
         _description = description;
         _dueDate = dueDate;
-        _equipments = equipments;
+        _equipment = equipments;
         _completed = completed;
     }
 
@@ -109,11 +110,11 @@ public class Task {
     }
 
     public void setEquipments(List<String> equipments){
-        _equipments = equipments;
+        _equipment = equipments;
     }
 
     public List<String> getequipments(){
-        return _equipments;
+        return _equipment;
     }
 
     public void setStatus(Boolean status){

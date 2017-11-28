@@ -92,7 +92,8 @@ public class UserLogin extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 User user = users.get(i);
-                User currentUser = Singleton.getInstance(user);
+                //User currentUser = Singleton.getInstance(user);
+                user.setActiveUser(user);
 
 //                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
                 Intent newActivity = new Intent(UserLogin.this, TaskPage.class);

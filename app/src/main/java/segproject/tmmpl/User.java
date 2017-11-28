@@ -8,6 +8,7 @@ public class User {
     private String _id;
     private String _username;
     private String _avatar_id;
+    private static User activeUser;
 
     private Collection<Task> createdTasks;
     private Collection<Task> assignedTasks;
@@ -45,6 +46,14 @@ public class User {
 //    public String getAvatarId() {
 //        return _avatar_id;
 //    }
+
+    public static void setActiveUser(User user){
+        activeUser = user;
+    }
+
+    public static User getActiveUser(){
+        return (activeUser);
+    }
 
     void addCreatedTask(Task task) {
         createdTasks.add(task);

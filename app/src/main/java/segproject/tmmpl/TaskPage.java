@@ -69,8 +69,8 @@ public class TaskPage extends AppCompatActivity {
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
 
-//        TextView activeUser = (TextView) findViewById(R.id.activeUser);
-//        activeUser.setText(Singleton.getInstance().getUsername());
+        TextView activeUser = (TextView) findViewById(R.id.activeUser);
+        activeUser.setText(User.getActiveUser().getUsername());
 
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
