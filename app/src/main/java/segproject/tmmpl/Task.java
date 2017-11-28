@@ -20,7 +20,7 @@ public class Task {
     private Boolean _completed;
 
     private Collection<User> assignedUser;
-    private Collection<User> creatorUser;
+    private User creatorUser;
 
 
 
@@ -30,34 +30,34 @@ public class Task {
 
     public Task(String id, String taskname, String description, long dueDate, List<String> equipment){
 
-        _id = id;
-        _taskname = taskname;
-        _description = description;
-        _dueDate = dueDate;
-        _completed = false;
-        _creator = User.getActiveUser();
-        _equipment = equipment;
+        this._id = id;
+        this._taskname = taskname;
+        this._description = description;
+        this._dueDate = dueDate;
+        this._completed = false;
+        this._creator = User.getActiveUser();
+        this._equipment = equipment;
     }
     public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, Boolean completed){
 
-        _id = id;
-        _taskname = taskname;
-        _creator = creator;
-        _assignedUser = assignedUser;
-        _description = description;
-        _dueDate = dueDate;
-        _completed = completed;
+        this._id = id;
+        this._taskname = taskname;
+        this._creator = creator;
+        this._assignedUser = assignedUser;
+        this._description = description;
+        this._dueDate = dueDate;
+        this._completed = completed;
     }
     public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, List<String> equipments, Boolean completed){
 
-        _id = id;
-        _taskname = taskname;
-        _creator = creator;
-        _assignedUser = assignedUser;
-        _description = description;
-        _dueDate = dueDate;
-        _equipment = equipments;
-        _completed = completed;
+        this._id = id;
+        this._taskname = taskname;
+        this._creator = creator;
+        this._assignedUser = assignedUser;
+        this._description = description;
+        this._dueDate = dueDate;
+        this._equipment = equipments;
+        this._completed = completed;
     }
 
     public void setTaskId(String id){
@@ -135,9 +135,12 @@ public class Task {
     }
 
 
-    void addCreatorUser(User user){
-        creatorUser.add(user);
+    void setCreatorUser(User user){
+        creatorUser = user;
     }
 
+    public User getCreatorUser(){
+        return creatorUser;
+    }
     //Don't need a deleteCreatorUser method, because task and user are dependent
 }
