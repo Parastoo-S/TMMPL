@@ -67,6 +67,13 @@
                     android:text="Only show my tasks"
                     tools:layout_editor_absoluteX="282dp"
                     tools:layout_editor_absoluteY="8dp" />
+
+                <TextView
+                    android:id="@+id/activeUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
             </LinearLayout>
 
             <ListView
