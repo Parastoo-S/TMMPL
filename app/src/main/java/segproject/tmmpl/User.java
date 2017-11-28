@@ -2,6 +2,7 @@ package segproject.tmmpl;
 
 
 import java.util.Collection;
+import java.util.List;
 
 public class User {
 
@@ -10,20 +11,21 @@ public class User {
     private String _avatar_id;
     private static User activeUser;
 
-    private Collection<Task> createdTasks;
-    private Collection<Task> assignedTasks;
+
+    private List<Task> createdTasks;
+    private List<Task> assignedTasks;
 
     public User() {
     }
 
     public User(String id, String username) {
-        _id = id;
-        _username = username;
+        this._id = id;
+        this._username = username;
 //        _avatar_id = avatar_id;
     }
 
     public User(String username) {
-        _username = username;
+        this._username = username;
 //        _avatar_id = avatar_id;
     }
 
@@ -52,7 +54,7 @@ public class User {
     }
 
     public static User getActiveUser(){
-        return (activeUser);
+        return activeUser;
     }
 
     void addCreatedTask(Task task) {
@@ -72,11 +74,11 @@ public class User {
     }
 
 
-    public Collection<Task> getCreatedTasks(){
+    public List<Task> getCreatedTasks(){
         return createdTasks;
     }
 
-    public Collection<Task> getAssignedTasks(){
+    public List<Task> getAssignedTasks(){
         return assignedTasks;
     }
 
