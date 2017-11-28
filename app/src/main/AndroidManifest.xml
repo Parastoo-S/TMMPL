@@ -19,7 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PeopleActivity"></activity>
+        <activity android:name=".PeopleActivity" />
+         <activity android:name=".TaskPage" />
+        <activity android:name=".AddTask" />
+        <!--<activity android:name=".TaskPage"></activity>-->
     </application>
 
 </manifest>
