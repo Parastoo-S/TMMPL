@@ -1,6 +1,7 @@
 package segproject.tmmpl;
 
 import java.security.Timestamp;
+import java.util.Collection;
 import java.util.Date;
 /**
  * Created by Parastoo on 11/25/2017.
@@ -16,18 +17,22 @@ public class Task {
     private String[] _equipments;
     private Boolean _completed;
 
+    private Collection<User> users;
+
+
 
 
     public Task() {
     }
 
-    public Task(String id, String taskname, String description, long dueDate){
+    public Task(String id, String taskname, String description, long dueDate, User creator){
 
         _id = id;
         _taskname = taskname;
         _description = description;
         _dueDate = dueDate;
         _completed = false;
+        _creator = creator;
     }
     public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, Boolean completed){
 
@@ -117,6 +122,13 @@ public class Task {
     }
 
 
+    void addUser(User user) {
+        users.add(user);
+    }
+
+    void removeUser(User user) {
+        users.remove(user);
+    }
 
 
     
