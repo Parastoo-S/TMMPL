@@ -1,11 +1,16 @@
 package segproject.tmmpl;
 
 
+import java.util.Collection;
+
 public class User {
 
     private String _id;
     private String _username;
     private String _avatar_id;
+
+    private Collection<Task> createdTasks;
+    private Collection<Task> assignedTasks;
 
     public User() {
     }
@@ -40,6 +45,31 @@ public class User {
 //    public String getAvatarId() {
 //        return _avatar_id;
 //    }
+
+    void addCreatedTask(Task task) {
+        createdTasks.add(task);
+    }
+
+    void removeCreatedTask(Task task) {
+        createdTasks.remove(task);
+    }
+
+    void addAssignedTask(Task task){
+        assignedTasks.add(task);
+    }
+
+    void removeAssignedTask(Task task){
+        assignedTasks.remove(task);
+    }
+
+
+    public Collection<Task> getCreatedTasks(){
+        return createdTasks;
+    }
+
+    public Collection<Task> getAssignedTasks(){
+        return assignedTasks;
+    }
 
 
 }
