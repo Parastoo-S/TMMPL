@@ -45,13 +45,13 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     TextView formatted;
     long dueDate;
     ArrayList<User> users;
-
+    User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
-
+        currentUser = User.getActiveUser();
         editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
         editTextDescription = (EditText) findViewById(R.id.editTextDescription);
 
@@ -147,6 +147,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
             Task task = new Task(id, name, description, dueDate,equipment);
+//            currentUser.addCreatedTask(task);
+//            task.setCreator(currentUser);
 
             databaseTasks.child(id).setValue(task);
 
@@ -158,13 +160,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             editTextDescription.setText("");
 
            // task.addCreatorUser(User.getActiveUser());
-//            activeUser.addCreatedTask(task);
+
             //User.getActiveUser().addCreatedTask(task);
 
 
             editTextEquipment.setText("");
 
             Toast.makeText(this,"task added", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,task.getCreatorUser().getUsername(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,task.getTaskName(), Toast.LENGTH_LONG).show();
         } else{
 
             Toast.makeText(this,"Please enter a name", Toast.LENGTH_LONG).show();
