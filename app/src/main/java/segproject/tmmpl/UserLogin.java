@@ -88,7 +88,18 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
+        listViewUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                User user = users.get(i);
+                User currentUser = Singleton.getInstance(user);
 
+//                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
+                Intent newActivity = new Intent(UserLogin.this, TaskPage.class);
+                startActivity(newActivity);
+
+            }
+        });
 
     }
 
