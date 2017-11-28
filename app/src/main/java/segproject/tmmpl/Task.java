@@ -19,7 +19,8 @@ public class Task {
     private List<String> _equipments;
     private Boolean _completed;
 
-    private Collection<User> users;
+    private Collection<User> assignedUser;
+    private Collection<User> creatorUser;
 
 
 
@@ -124,14 +125,18 @@ public class Task {
     }
 
 
-    void addUser(User user) {
-        users.add(user);
+    void addAssignedUser(User user) {
+        assignedUser.add(user);
     }
 
-    void removeUser(User user) {
-        users.remove(user);
+    void removeAssignedUser(User user) {
+        assignedUser.remove(user);
     }
 
 
-    
+    void addCreatorUser(User user){
+        creatorUser.add(user);
+    }
+
+    //Don't need a deleteCreatorUser method, because task and user are dependent
 }
