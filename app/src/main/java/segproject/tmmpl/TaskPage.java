@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -68,6 +69,8 @@ public class TaskPage extends AppCompatActivity {
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
 
+//        TextView activeUser = (TextView) findViewById(R.id.activeUser);
+//        activeUser.setText(Singleton.getInstance().getUsername());
 
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
