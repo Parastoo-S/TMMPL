@@ -156,8 +156,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             editTextTaskName.setText("");
             editTextDescription.setText("");
 
-            task.addUser(activeUser);
-            activeUser.addCreatedTask(task);
+//            task.addCreatorUser(activeUser);
+//            activeUser.addCreatedTask(task);
 
 
             editTextEquipment.setText("");
