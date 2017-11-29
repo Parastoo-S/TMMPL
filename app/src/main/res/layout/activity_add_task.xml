@@ -39,7 +39,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Required Equipment (Use commas to seperate equipment):" />
+            android:text="Required Equipment (Use commas to seperate equipment e.g. ladder, paint brush...):" />
 
         <EditText
             android:id="@+id/editTextEquipment"

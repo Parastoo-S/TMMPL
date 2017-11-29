@@ -1,6 +1,7 @@
 package segproject.tmmpl;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class User {
     private static User activeUser;
 
 
-    private List<Task> createdTasks;
-    private List<Task> assignedTasks;
+    private ArrayList<Task> createdTasks = new ArrayList<>();
+    private ArrayList<String> _assignedTasks = new ArrayList<>();
 
     public User() {
     }
@@ -24,7 +25,7 @@ public class User {
 //        _avatar_id = avatar_id;
     }
 
-    public User(String username) {
+        public User(String username) {
         this._username = username;
 //        _avatar_id = avatar_id;
     }
@@ -57,20 +58,20 @@ public class User {
         return activeUser;
     }
 
-    void addCreatedTask(Task task) {
-        createdTasks.add(task);
+    public void addCreatedTask(Task task) {
+        this.createdTasks.add(task);
     }
 
     void removeCreatedTask(Task task) {
         createdTasks.remove(task);
     }
 
-    void addAssignedTask(Task task){
-        assignedTasks.add(task);
+    public void addAssignedTask(String id){
+        _assignedTasks.add(id);
     }
 
     void removeAssignedTask(Task task){
-        assignedTasks.remove(task);
+        _assignedTasks.remove(task);
     }
 
 
@@ -78,8 +79,8 @@ public class User {
         return createdTasks;
     }
 
-    public List<Task> getAssignedTasks(){
-        return assignedTasks;
+    public List<String> getAssignedTasks(){
+        return _assignedTasks;
     }
 
 
