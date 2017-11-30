@@ -36,6 +36,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     EditText editTextEquipment;
     Button saveTaskButton;
     DatabaseReference databaseTasks;
+    DatabaseReference databaseUsers;
     Button pickDateTime;
     int day, month, year, hour, minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
@@ -58,6 +59,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         editTextEquipment = (EditText) findViewById(R.id.editTextEquipment);
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         saveTaskButton = (Button) findViewById(R.id.saveTaskButton);
         pickDateTime = (Button) findViewById(R.id.pickDateTime);
 
@@ -152,16 +154,24 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
             databaseTasks.child(id).setValue(task);
 
+            User.getActiveUser().addAssignedTask(task.getTaskId());
+
+            databaseUsers.child(User.getActiveUser().getId()).child("assignedTaskIds").push().setValue(User.getActiveUser().getAssignedTasks());
+
+           // User.getActiveUser().addAssignedTask(task);
+
 //            for(String add : equipment){
 //                databaseTasks.child(id).child("equipment").push().setValue(add);
 //            }
+           // for(User current : databaseTasks.child("users")){
 
+           // }
             editTextTaskName.setText("");
             editTextDescription.setText("");
 
            // task.addCreatorUser(User.getActiveUser());
 
-            //User.getActiveUser().addCreatedTask(task);
+
 
 
             editTextEquipment.setText("");

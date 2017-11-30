@@ -49,7 +49,11 @@ public class TaskPage extends AppCompatActivity {
     List<Task> tasks;
     CheckBox completed;
     User currentUser;
-
+    Button buttonShowUsersTasks;
+    DatabaseReference databaseUserTasks;
+    ArrayList<String> taskIds = new ArrayList<>();
+    ArrayList<Task> activeTasks = new ArrayList<>();
+    FloatingActionButton addTaskFab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,11 +75,29 @@ public class TaskPage extends AppCompatActivity {
         listViewTasks.requestFocus();
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
         currentUser = User.getActiveUser();
+        buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
+        addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
 
 
+        addTaskFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TaskPage.this, AddTask.class));
+            }
+        });
+
+
+        databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(User.getActiveUser().getId()).child("assignedTaskIds");
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         tasks = new ArrayList<>();
+
+        buttonShowUsersTasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activeUserTasks();
+            }
+        });
 
 
 //        addTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +150,47 @@ public class TaskPage extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void activeUserTasks(){
+//        databaseUserTasks.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+//                    taskIds.add(postSnapshot.getValue().toString());
+//
+//                }
+//
+//                databaseTasks.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        //tasks.clear();
+//                        for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+//                            Task task = postSnapshot.getValue(Task.class);
+//                            for(String id : taskIds){
+//                                if(task.getTaskId().equals(id)) {
+//                                    activeTasks.add(task);
+//                                }
+//                            }
+//                        }
+//
+//                        TaskList tasksAdapter = new TaskList(TaskPage.this,activeTasks);
+//                        listViewTasks.setAdapter(tasksAdapter);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
     }
 
 

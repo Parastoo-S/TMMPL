@@ -1,6 +1,7 @@
 package segproject.tmmpl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,6 +25,9 @@ public class TaskList extends ArrayAdapter<Task> {
         this.context = context;
         this.tasks = tasks;
     }
+    public void onCheckBox(View v){
+
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -31,7 +38,30 @@ public class TaskList extends ArrayAdapter<Task> {
         TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewDescription);
         TextView dueDateTime = (TextView) listViewItem.findViewById(R.id.dueDateTime);
 
-        TextView status = (TextView) listViewItem.findViewById(R.id.status);
+        final TextView status = (TextView) listViewItem.findViewById(R.id.status);
+
+        final CheckBox completed = (CheckBox)listViewItem.findViewById(R.id.completed);
+
+        completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(completed.isChecked()==false){
+                    status.setText("incomplete");
+
+                }
+
+                if(completed.isChecked()==true) {
+                    status.setText("Complete");
+                    Toast.makeText(getContext(), "Task Completed",
+                            Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+
 
 
 //        TextView textViewCreatorName = (TextView) listViewItem.findViewById(R.id.textViewCreatorName);
@@ -41,7 +71,7 @@ public class TaskList extends ArrayAdapter<Task> {
         Task task = tasks.get(position);
         textViewName.setText(task.getTaskName());
         textViewDescription.setText(task.getDescription());
-        boolean completed = task.getStatus();
+     /*   boolean completed = task.getStatus();
         if (completed){
             status.setText("Completed");
         }
@@ -49,7 +79,7 @@ public class TaskList extends ArrayAdapter<Task> {
         else{
             status.setText("Not Completed");
         }
-
+*/
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(task.getDueDate());
 

@@ -71,6 +71,7 @@ public class UserLogin extends AppCompatActivity {
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
 
+
         //adding an onclicklistener to button
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
