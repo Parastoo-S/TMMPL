@@ -69,10 +69,9 @@ public class TaskPage extends AppCompatActivity {
 //
 //        });
 
-        editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
-        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
+//        editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
+//        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
-        listViewTasks.requestFocus();
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
         currentUser = User.getActiveUser();
         buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
@@ -112,18 +111,6 @@ public class TaskPage extends AppCompatActivity {
 //        TextView activeUser = (TextView) findViewById(R.id.activeUser);
 //        activeUser.setText(currentUser.getUsername());
 
-        listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Task task = tasks.get(i);
-                //User currentUser = Singleton.getInstance(user);
-                task.setActiveTask(task);
-
-                Toast.makeText(getApplicationContext(), task.getTaskName(), Toast.LENGTH_LONG).show();
-                Intent newActivity = new Intent(TaskPage.this, ViewTask.class);
-                startActivity(newActivity);
-            }
-        });
 
 
 
