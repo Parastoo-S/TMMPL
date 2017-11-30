@@ -54,6 +54,7 @@ public class TaskPage extends AppCompatActivity {
     ArrayList<String> taskIds = new ArrayList<>();
     ArrayList<Task> activeTasks = new ArrayList<>();
     FloatingActionButton addTaskFab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,19 +100,24 @@ public class TaskPage extends AppCompatActivity {
         });
 
 
-//        addTaskButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent addTask = new Intent(TaskPage.this, AddTask.class);
-//                startActivity(addTask);
-//            }
-//        });
-
 
 //        TextView activeUser = (TextView) findViewById(R.id.activeUser);
 //        activeUser.setText(currentUser.getUsername());
 
 
+        listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Task task = tasks.get(i);
+
+                task.setActiveTask(task);
+
+//                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
+                Intent newActivity = new Intent(TaskPage.this, ViewTask.class);
+                startActivity(newActivity);
+
+            }
+        });
 
 
     }
@@ -181,76 +187,6 @@ public class TaskPage extends AppCompatActivity {
     }
 
 
-//    private void showUpdateDeleteDialog(final String taskId) {
-//
-//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-//        LayoutInflater inflater = getLayoutInflater();
-//        final View dialogView = inflater.inflate(R.layout.update_task_dialog, null);
-//        dialogBuilder.setView(dialogView);
-//
-//        final EditText editTextTaskName = (EditText) dialogView.findViewById(R.id.editTextTaskName);
-//        final EditText editTextDescription  = (EditText) dialogView.findViewById(R.id.editTextDescription);
-//        final Button buttonTaskUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateTask);
-//        final Button buttonTaskDelete = (Button) dialogView.findViewById(R.id.buttonDeleteTask);
-//
-//        final AlertDialog b = dialogBuilder.create();
-//        b.show();
-//
-//        buttonTaskUpdate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String name = editTextTaskName.getText().toString().trim();
-//                String description = editTextDescription.getText().toString().trim();
-//                if (!TextUtils.isEmpty(name)) {
-//                    updateTask(taskId, name, description);
-//                    b.dismiss();
-//                }
-//            }
-//        });
-//
-//        buttonTaskDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                deleteTask(taskId);
-//                b.dismiss();
-//            }
-//        });
-//    }
-
-
-//    private void updateTask(String id, String taskName, String description, User creator, User assigned, Boolean isComplete) {
-//
-//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("products").child(id);
-//
-//        Task product = new Task(id, name, price);
-//
-//        dR.setValue(product);
-//
-//        Toast.makeText(getApplicationContext(), "Product Updated", Toast.LENGTH_LONG).show();
-//    }
-
-
-
-
-//    private void addTask() {
-//        String name = editTextTaskName.getText().toString().trim();
-//        String description = editTextDescription.getText().toString().trim();
-//
-//        if(!TextUtils.isEmpty(name)){
-//            String id = databaseTasks.push().getKey();
-//            Task task = new Task(id, name, description);
-//
-//            databaseTasks.child(id).setValue(task);
-//
-//            editTextTaskName.setText("");
-//            editTextDescription.setText("");
-//            Toast.makeText(this,"task added", Toast.LENGTH_LONG).show();
-//        } else{
-//
-//            Toast.makeText(this,"Please enter a name", Toast.LENGTH_LONG).show();
-//        }
-//
-//    }
 
     public void startNewTaskActivity(View view){
         Intent addTask = new Intent(TaskPage.this, AddTask.class);
