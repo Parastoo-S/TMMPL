@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,16 +27,20 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
     long dueDate;
     TextView formatted;
+    Button saveChangeTask;
+    Task activeTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
+        activeTask = Task.getActiveTask();
 
         final EditText editTaskTitle = (EditText) findViewById(R.id.editTaskTitle);
         final EditText editDescription = (EditText) findViewById(R.id.editDescription);
         final Button editDateTime = (Button) findViewById(R.id.editDateTime);
         formatted = (TextView) findViewById(R.id.formatted);
+        saveChangeTask = (Button) findViewById(R.id.saveChangeTask);
 
         editDateTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,17 +56,42 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
+        saveChangeTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Task task = activeTask;
+
+
+                String name = editTaskTitle.getText().toString().trim();
+                String description = editDescription.getText().toString().trim();
+                long dueDateTime = dueDate;
+
+                if (!TextUtils.isEmpty(name)) {
+                    task.setTaskName(name);
+                }
+                if(!TextUtils.isEmpty(description)) {
+                    task.setDescription(description);
+                }
+
+                if (dueDate != 0) {
+                    task.setDueDate(dueDate);
+                }
+
+                updateTask(task.getTaskId(), task);
+                finish();
+
+            }
+        });
+
 
     }
 
 
-    private void updateTask(String id, String taskName, String description, long dueDate, List<String> equipment ) {
+    private void updateTask(String id, Task task) {
 
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(id);
 
-        Task task = new Task(id, taskName, description, dueDate, equipment );
-
-        dR.setValue(task);
+       dR.setValue(task);
 
         Toast.makeText(getApplicationContext(), "Task Updated", Toast.LENGTH_LONG).show();
     }
