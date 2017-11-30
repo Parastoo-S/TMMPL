@@ -2,6 +2,7 @@ package segproject.tmmpl;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AlertDialog;
@@ -58,13 +59,13 @@ public class ViewTask extends AppCompatActivity {
 //        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
         description.setText(activeTask.getDescription());
         dueDate.setText(String.valueOf(activeTask.getDueDate()));
-        creatorName.setText(activeTask.getCreatorUser().getUsername());
+//        creatorName.setText(activeTask.getCreatorUser().getUsername());
 
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewTask.this, EditText.class);
+                Intent intent = new Intent(ViewTask.this, EditTask.class);
                 startActivity(intent);
             }
         });
@@ -72,10 +73,50 @@ public class ViewTask extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteTask(Task.getActiveTask().getTaskId());
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(
+                        ViewTask.this);
+                alert.setTitle("Alert!!");
+                alert.setMessage("Are you sure you want to delete this task?");
+                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteTask(Task.getActiveTask().getTaskId());
+                        dialog.dismiss();
+                        finish();
+
+                    }
+                });
+                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                    }
+                });
+
+                alert.show();
+
+
+
             }
         });
     }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+        activeTask = Task.getActiveTask();
+        taskTitle.setText(activeTask.getTaskName());
+//        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
+        description.setText(activeTask.getDescription());
+        dueDate.setText(String.valueOf(activeTask.getDueDate()));
+
+    }
+
 
 
 
