@@ -22,7 +22,7 @@ public class Task {
     private Collection<User> assignedUser;
     private User creatorUser;
 
-
+    private static Task activeTask;
 
 
     public Task() {
@@ -37,6 +37,15 @@ public class Task {
         this._completed = false;
         this._creator = User.getActiveUser();
         this._equipment = equipment;
+    }
+
+    public Task(String id, String taskname, User assignedUser, String description, long dueDate){
+
+        this._id = id;
+        this._taskname = taskname;
+        this._assignedUser = assignedUser;
+        this._description = description;
+        this._dueDate = dueDate;
     }
     public Task(String id, String taskname, User creator, User assignedUser, String description, long dueDate, Boolean completed){
 
@@ -134,7 +143,13 @@ public class Task {
         assignedUser.remove(user);
     }
 
+    public static void setActiveTask(Task task){
+        activeTask = task;
+    }
 
+    public static Task getActiveTask(){
+        return activeTask;
+    }
     void setCreatorUser(User user){
         creatorUser = user;
     }
