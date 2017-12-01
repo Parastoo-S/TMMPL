@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,8 +20,11 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
@@ -47,6 +51,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     long dueDate;
     ArrayList<User> users;
     User currentUser;
+    User assignedUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,7 +153,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
-            Task task = new Task(id, name, description, dueDate,equipment);
+            Task task = new Task(id, name, description, assignedUser, dueDate,equipment);
 //            currentUser.addCreatedTask(task);
 //            task.setCreator(currentUser);
 
@@ -193,9 +198,22 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
         final View dialogView = inflater.inflate(R.layout.assign_user_dialog, null);
         ListView possibleAssignees = (ListView) dialogView.findViewById(R.id.possibleAssignees);
-        databaseTasks = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
-        UserList usersAdapter = new UserList(AddTask.this,users);
+        FirebaseDatabase.getInstance().getReference("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    users.add(user);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+       UserList usersAdapter = new UserList(AddTask.this,users);
 
         possibleAssignees.setAdapter(usersAdapter);
         dialogBuilder.setView(dialogView);
@@ -203,6 +221,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
         final AlertDialog b = dialogBuilder.create();
         b.show();
+
+        possibleAssignees.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                User user = users.get(i);
+                assignedUser = user;
+                b.dismiss();
+            }
+        });
 
     }
 
