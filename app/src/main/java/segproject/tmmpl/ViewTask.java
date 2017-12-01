@@ -29,7 +29,7 @@ public class ViewTask extends AppCompatActivity {
 
     private Task activeTask;
     TextView assignedUserName;
-    TextView description;
+    EditText description;
     TextView dueDate;
     TextView dueTime;
     TextView creatorName;
@@ -48,8 +48,9 @@ public class ViewTask extends AppCompatActivity {
         activeTask = Task.getActiveTask();
 
         taskTitle = (TextView) findViewById(R.id.taskTitle);
-//        assignedUserName = (TextView) findViewById(R.id.assignedUserName);
-        description = (TextView) findViewById(R.id.description);
+        assignedUserName = (TextView) findViewById(R.id.assignedUserName);
+        description = (EditText) findViewById(R.id.description);
+        description.setEnabled(false);
         dueDate = (TextView) findViewById(R.id.dueDate);
         dueTime = (TextView) findViewById(R.id.dueTime);
         creatorName = (TextView) findViewById(R.id.creatorName);
@@ -58,7 +59,12 @@ public class ViewTask extends AppCompatActivity {
         deleteButton = (ImageView) findViewById(R.id.deleteTask);
 
         taskTitle.setText(activeTask.getTaskName());
+
+        //** these two lines give exceptions, don't know why
+//        creatorName.setText(activeTask.getCreatorUser().getUsername());
 //        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
+
+
         description.setText(activeTask.getDescription());
 
         Calendar c = Calendar.getInstance();
@@ -73,7 +79,8 @@ public class ViewTask extends AppCompatActivity {
 
         dueDate.setText(mYear + "/" + mMonth + "/" + mDay);
         dueTime.setText(mHour + ":" + mMinute);
-//        creatorName.setText(activeTask.getCreatorUser().getUsername());
+
+
 
 
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +99,7 @@ public class ViewTask extends AppCompatActivity {
                         ViewTask.this);
                 alert.setTitle("Alert!!");
                 alert.setMessage("Are you sure you want to delete this task?");
-                alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("YES, DELETE", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -102,7 +109,7 @@ public class ViewTask extends AppCompatActivity {
 
                     }
                 });
-                alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("NO, KEEP", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

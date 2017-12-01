@@ -30,11 +30,12 @@ public class Task {
     public Task() {
     }
 
-    public Task(String id, String taskname, String description, long dueDate, List<String> equipment){
+    public Task(String id, String taskname, String description, User assignedUser, long dueDate, List<String> equipment){
 
         this._id = id;
         this._taskname = taskname;
         this._description = description;
+        _assignedUser = assignedUser;
         this._dueDate = dueDate;
         this._completed = false;
         this._creator = User.getActiveUser();
