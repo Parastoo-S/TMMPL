@@ -80,7 +80,7 @@ public class TaskList extends ArrayAdapter<Task> {
             status.setText("Not Completed");
         }
 */
-        Calendar c = Calendar.getInstance();
+               Calendar c = Calendar.getInstance();
         c.setTimeInMillis(task.getDueDate());
 
         int mYear = c.get(Calendar.YEAR);
