@@ -1,5 +1,7 @@
 package segproject.tmmpl;
 
+import android.widget.ImageView;
+
 import java.security.Timestamp;
 import java.util.Collection;
 import java.util.Date;

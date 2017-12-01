@@ -7,20 +7,27 @@
         android:id="@+id/editTaskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Change task name"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Edit task description"
         android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/editDateTime"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="20dp"
         android:text="Change due date" />
 
     <TextView
@@ -31,7 +38,10 @@
 
     <Button
         android:id="@+id/saveChangeTask"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="200dp"
         android:text="Apply Changes" />
+
 </LinearLayout>
