@@ -31,6 +31,7 @@ public class ViewTask extends AppCompatActivity {
     TextView assignedUserName;
     TextView description;
     TextView dueDate;
+    TextView dueTime;
     TextView creatorName;
     TextView taskTitle;
     ImageView editButton;
@@ -50,6 +51,7 @@ public class ViewTask extends AppCompatActivity {
 //        assignedUserName = (TextView) findViewById(R.id.assignedUserName);
         description = (TextView) findViewById(R.id.description);
         dueDate = (TextView) findViewById(R.id.dueDate);
+        dueTime = (TextView) findViewById(R.id.dueTime);
         creatorName = (TextView) findViewById(R.id.creatorName);
 
         editButton = (ImageView) findViewById(R.id.editTask);
@@ -58,7 +60,19 @@ public class ViewTask extends AppCompatActivity {
         taskTitle.setText(activeTask.getTaskName());
 //        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
         description.setText(activeTask.getDescription());
-        dueDate.setText(String.valueOf(activeTask.getDueDate()));
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(activeTask.getDueDate());
+
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        int mHour = c.get(Calendar.HOUR_OF_DAY);
+        int mMinute = c.get(Calendar.MINUTE);
+
+
+        dueDate.setText(mYear + "/" + mMonth + "/" + mDay);
+        dueTime.setText(mHour + ":" + mMinute);
 //        creatorName.setText(activeTask.getCreatorUser().getUsername());
 
 
@@ -113,7 +127,20 @@ public class ViewTask extends AppCompatActivity {
         taskTitle.setText(activeTask.getTaskName());
 //        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
         description.setText(activeTask.getDescription());
-        dueDate.setText(String.valueOf(activeTask.getDueDate()));
+
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(activeTask.getDueDate());
+
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        int mHour = c.get(Calendar.HOUR_OF_DAY);
+        int mMinute = c.get(Calendar.MINUTE);
+
+
+        dueDate.setText(mYear + "/" + mMonth + "/" + mDay);
+        dueTime.setText(mHour + ":" + mMinute);
 
     }
 
