@@ -204,13 +204,15 @@
             android:layout_width="match_parent"
             android:layout_height="148dp"
             android:background="@drawable/notes"
+            android:editable="false"
             android:ems="10"
             android:hint="Enter Notes"
             android:inputType="textPersonName"
             android:paddingBottom="20dp"
             android:paddingLeft="20dp"
             android:paddingTop="5dp"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <LinearLayout
