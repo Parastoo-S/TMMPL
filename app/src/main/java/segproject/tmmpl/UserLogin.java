@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ public class UserLogin extends AppCompatActivity {
     DatabaseReference databaseUsers;
     List<User> users;
     ImageView buttonSetAvatar;
+    Spinner role;
 
 
     @Override
@@ -75,6 +77,7 @@ public class UserLogin extends AppCompatActivity {
         buttonAddUser = (Button) findViewById(R.id.newUser);
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
+        role = (Spinner) findViewById(R.id.role);
 
 
 
@@ -104,6 +107,7 @@ public class UserLogin extends AppCompatActivity {
 
 //                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
                 Intent newActivity = new Intent(UserLogin.this, TaskPage.class);
+//                newActivity.putExtra("activeUser", user);
                 startActivity(newActivity);
 
             }

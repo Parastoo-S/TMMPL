@@ -3,6 +3,7 @@ package segproject.tmmpl;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,7 +57,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-
+//        Intent intent = getIntent();
+//        currentUser = (User) intent.getSerializableExtra("activeUser");
         currentUser = User.getActiveUser();
         editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
         editTextDescription = (EditText) findViewById(R.id.editTextDescription);
@@ -153,13 +155,13 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
-            Task task = new Task(id, name, description, assignedUser, dueDate,equipment);
+            Task task = new Task(id, name, description, currentUser, assignedUser, dueDate,equipment);
 //            currentUser.addCreatedTask(task);
 //            task.setCreator(currentUser);
 
             databaseTasks.child(id).setValue(task);
 
-            User.getActiveUser().addAssignedTask(task.getTaskId());
+//            currentUser.addAssignedTask(task.getTaskId());
 
             databaseUsers.child(User.getActiveUser().getId()).child("assignedTaskIds").push().setValue(task.getTaskId());
 

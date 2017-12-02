@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">TMMPL</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="role">
+        <item>Parent</item>
+        <item>Child</item>
+    </string-array>
+
+
 </resources>
