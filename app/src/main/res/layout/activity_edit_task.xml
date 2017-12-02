@@ -58,6 +58,13 @@
         android:background="@drawable/calender"
         android:text="Tweak" />
 
+    <TextView
+        android:id="@+id/formatted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp" />
+
     <Button
         android:id="@+id/allocateUser"
         android:layout_width="match_parent"
@@ -74,14 +81,8 @@
         android:id="@+id/saveChangeTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
         android:text="Apply" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
 
 
 </LinearLayout>
