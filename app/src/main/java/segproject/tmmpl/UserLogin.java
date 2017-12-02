@@ -1,7 +1,14 @@
 package segproject.tmmpl;
 
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+
 import android.media.Image;
 import android.support.v7.app.AlertDialog;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -91,6 +98,7 @@ public class UserLogin extends AppCompatActivity {
 //        getMenuInflater().inflate(R.menu.menu_user_login, menu);
 //        return true;
 //    }
+
 
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
@@ -218,6 +226,7 @@ public class UserLogin extends AppCompatActivity {
         return true;
     }
 
+
     private void addUser(String name) {
         String username = name;
 //        double price=Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
@@ -236,6 +245,12 @@ public class UserLogin extends AppCompatActivity {
             Toast.makeText(this,"Please enter a username", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+
+    public void goToQuickAccess(View view){
+        Intent startNewActivity = new Intent(this, QuickAccess.class);
+        startActivity(startNewActivity);
     }
 
 }
