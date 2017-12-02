@@ -21,8 +21,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,16 +46,16 @@ public class TaskPage extends AppCompatActivity {
 
     EditText editTextTaskName;
     EditText editTextDescription;
-    Button addTaskButton;
     ListView listViewTasks;
     DatabaseReference databaseTasks;
     List<Task> tasks;
     CheckBox completed;
     User currentUser;
-    Button buttonShowUsersTasks;
+    Switch buttonShowUsersTasks;
     DatabaseReference databaseUserTasks;
+    DatabaseReference databaseEquipmentsTask;
     ArrayList<String> taskIds = new ArrayList<>();
-//    ArrayList<Task> activeTasks = new ArrayList<>();
+    ArrayList<Task> activeTasks = new ArrayList<>();
     FloatingActionButton addTaskFab;
 
     @Override
@@ -74,12 +76,13 @@ public class TaskPage extends AppCompatActivity {
 //        editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
 //        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
-        addTaskButton = (Button) findViewById(R.id.addTaskButton);
+        //addTaskButton = (Button) findViewById(R.id.addTaskButton);
         currentUser = User.getActiveUser();
-//        Intent intent = getIntent();
-//        activeUser = (User) intent.getSerializableExtra("activeUser");
 
-        buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
+        buttonShowUsersTasks = (Switch) findViewById(R.id.showSwitch);
+
+        //buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
+
         addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
 
 
@@ -95,18 +98,28 @@ public class TaskPage extends AppCompatActivity {
         });
 
 
-        databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getId()).child("assignedTaskIds");
+
+        databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(User.getActiveUser().getId()).child("assignedTaskIds");
+
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         tasks = new ArrayList<>();
 
-        buttonShowUsersTasks.setOnClickListener(new View.OnClickListener() {
+        // TODO: Check this out
+        //buttonShowUsersTasks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+        buttonShowUsersTasks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onClick(View v) {
-                activeUserTasks();
+            public void onCheckedChanged(CompoundButton view, boolean checked){
+                if(!checked){
+                    TaskList tasksAdapter = new TaskList(TaskPage.this,tasks);
+                    listViewTasks.setAdapter(tasksAdapter);
+                }else{
+
+                    activeUserTasks();
+                }
             }
         });
-
 
 
 //        TextView activeUser = (TextView) findViewById(R.id.activeUser);
@@ -155,36 +168,50 @@ public class TaskPage extends AppCompatActivity {
     }
 
     public void activeUserTasks(){
-//        databaseUserTasks.addValueEventListener(new ValueEventListener() {
+        databaseUserTasks.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                taskIds.clear();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    taskIds.add(postSnapshot.getValue().toString());
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        activeTasks.clear();
+        for(Task check : tasks){
+            for(String id : taskIds){
+                //TODO: it is not grabbing the proper info form the database
+                if(check.getTaskId().equals(id)){
+                    activeTasks.add(check);
+                }
+            }
+        }
+
+        TaskList activeTasksAdapter = new TaskList(TaskPage.this,activeTasks);
+        listViewTasks.setAdapter(activeTasksAdapter);
+
+//        databaseTasks.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(DataSnapshot dataSnapshot) {
+//                //tasks.clear();
 //                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-//                    taskIds.add(postSnapshot.getValue().toString());
-//
+//                    Task task = postSnapshot.getValue(Task.class);
+//                    for(String id : taskIds){
+//                        if(task.getTaskId().equals(id)) {
+//                            activeTasks.add(task);
+//                        }
+//                    }
 //                }
 //
-//                databaseTasks.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        //tasks.clear();
-//                        for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-//                            Task task = postSnapshot.getValue(Task.class);
-//                            for(String id : taskIds){
-//                                if(task.getTaskId().equals(id)) {
-//                                    activeTasks.add(task);
-//                                }
-//                            }
-//                        }
-//
-//                        TaskList tasksAdapter = new TaskList(TaskPage.this,activeTasks);
-//                        listViewTasks.setAdapter(tasksAdapter);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                });
+//                TaskList tasksAdapter = new TaskList(TaskPage.this,activeTasks);
+//                listViewTasks.setAdapter(tasksAdapter);
 //            }
 //
 //            @Override

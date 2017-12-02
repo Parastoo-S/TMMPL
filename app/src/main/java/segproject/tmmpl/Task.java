@@ -1,6 +1,8 @@
 package segproject.tmmpl;
 
-import java.io.Serializable;
+import android.widget.ImageView;
+
+
 import java.security.Timestamp;
 import java.util.Collection;
 import java.util.Date;
@@ -95,7 +97,7 @@ public class Task {
         _equipment = equipments;
     }
 
-    public List<String> getequipments(){
+    public List<String> getEquipments(){
         return _equipment;
     }
 

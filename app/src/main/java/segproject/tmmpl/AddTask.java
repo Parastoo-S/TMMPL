@@ -151,6 +151,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
        // User activeUser = Singleton.getInstance();
 
         List<String> equipment = Arrays.asList(editTextEquipment.getText().toString().split(","));
+        for(String text : equipment){
+            text.trim();
+        }
 
 
         if(!TextUtils.isEmpty(name)){
@@ -163,7 +166,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
 //            currentUser.addAssignedTask(task.getTaskId());
 
-//            databaseUsers.child(currentUser.getId()).child("assignedTaskIds").push().setValue(currentUser.getAssignedTasks());
+            databaseUsers.child(User.getActiveUser().getId()).child("assignedTaskIds").push().setValue(task.getTaskId());
 
            // User.getActiveUser().addAssignedTask(task);
 
@@ -172,7 +175,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 //            }
            // for(User current : databaseTasks.child("users")){
 
-           // }
+           //
             editTextTaskName.setText("");
             editTextDescription.setText("");
 
@@ -183,12 +186,12 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
             editTextEquipment.setText("");
 
-            Toast.makeText(this,"task added", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Task added", Toast.LENGTH_LONG).show();
 //            Toast.makeText(this,task.getCreatorUser().getUsername(), Toast.LENGTH_LONG).show();
 //            Toast.makeText(this,task.getTaskName(), Toast.LENGTH_LONG).show();
         } else{
 
-            Toast.makeText(this,"Please enter a name", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please fill out all sections", Toast.LENGTH_LONG).show();
         }
 
     }

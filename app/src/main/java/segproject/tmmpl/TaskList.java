@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class TaskList extends ArrayAdapter<Task> {
         final TextView status = (TextView) listViewItem.findViewById(R.id.status);
 
         final CheckBox completed = (CheckBox)listViewItem.findViewById(R.id.completed);
+        ImageView profilePicImage = (ImageView)listViewItem.findViewById(R.id.profilePicImage);
 
         completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
