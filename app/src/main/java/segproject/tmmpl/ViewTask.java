@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -22,6 +24,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -67,13 +71,29 @@ public class ViewTask extends AppCompatActivity {
 
 
         description.setText(activeTask.getDescription());
+/*
+        ArrayList<String> arrayList;
+
+        ArrayAdapter<String> adapter;
+        int clickCounter=0;
+
+        ListView equipmentList2 = (ListView)findViewById(R.id.equipmentList2);
+        String[] items={"a","b","b"};
+        arrayList=new ArrayList<>(Arrays.asList(items));
+        adapter=new ArrayAdapter<String>(this,R.layout.list_item,R.id.txtItem,arrayList);
+        equipmentList2.setAdapter(adapter);
+*/
+
+        //   arrayList.add(newItem);
 
         String equipments="";
         for (String s : activeTask.getequipments())
         {
-            equipments += s + ", ";
+            equipments +="•"+ s + "\n";
         }
         equipmentList.setText(equipments);
+
+
 
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(activeTask.getDueDate());
