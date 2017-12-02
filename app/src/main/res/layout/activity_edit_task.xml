@@ -43,13 +43,32 @@
         android:ems="10"
         android:inputType="textMultiLine" />
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:text="New equipment list"
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:id="@+id/editEquipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
     <Button
         android:id="@+id/editDateTime"
         android:layout_width="67dp"
         android:layout_height="67dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/calender"
         android:text="Tweak" />
 
@@ -58,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:text="Apply" />
 
     <LinearLayout

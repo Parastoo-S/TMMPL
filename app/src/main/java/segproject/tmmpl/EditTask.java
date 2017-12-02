@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -37,54 +38,66 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         activeTask = Task.getActiveTask();
 
         final EditText editTaskTitle = (EditText) findViewById(R.id.editTaskTitle);
+        editTaskTitle.setText(activeTask.getTaskName());
         final EditText editDescription = (EditText) findViewById(R.id.editDescription);
-        final Button editDateTime = (Button) findViewById(R.id.editDateTime);
-        formatted = (TextView) findViewById(R.id.formatted);
-        saveChangeTask = (Button) findViewById(R.id.saveChangeTask);
-
-        editDateTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(EditTask.this, EditTask.this, year, month, day);
-                datePickerDialog.show();
-
-            }
-        });
-
-        saveChangeTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Task task = activeTask;
+        editDescription.setText(activeTask.getDescription());
+        final EditText editEquipment = (EditText) findViewById(R.id.editEquipment);
+        String equipments = "";
+        for (String s : activeTask.getequipments()) {
+            equipments += s + ",";
+        }
+        editEquipment.setText(equipments);
 
 
-                String name = editTaskTitle.getText().toString().trim();
-                String description = editDescription.getText().toString().trim();
-                long dueDateTime = dueDate;
+            final Button editDateTime = (Button) findViewById(R.id.editDateTime);
 
-                if (!TextUtils.isEmpty(name)) {
-                    task.setTaskName(name);
+
+            formatted = (TextView) findViewById(R.id.formatted);
+            saveChangeTask = (Button) findViewById(R.id.saveChangeTask);
+
+            editDateTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final Calendar c = Calendar.getInstance();
+                    int year = c.get(Calendar.YEAR);
+                    int month = c.get(Calendar.MONTH);
+                    int day = c.get(Calendar.DAY_OF_MONTH);
+
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(EditTask.this, EditTask.this, year, month, day);
+                    datePickerDialog.show();
+
                 }
-                if(!TextUtils.isEmpty(description)) {
-                    task.setDescription(description);
+            });
+
+            saveChangeTask.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Task task = activeTask;
+
+
+                    String name = editTaskTitle.getText().toString().trim();
+                    String description = editDescription.getText().toString().trim();
+                    long dueDateTime = dueDate;
+
+                    if (!TextUtils.isEmpty(name)) {
+                        task.setTaskName(name);
+                    }
+                    if (!TextUtils.isEmpty(description)) {
+                        task.setDescription(description);
+                    }
+
+                    if (dueDate != 0) {
+                        task.setDueDate(dueDate);
+                    }
+
+                    updateTask(task.getTaskId(), task);
+                    finish();
+
                 }
-
-                if (dueDate != 0) {
-                    task.setDueDate(dueDate);
-                }
-
-                updateTask(task.getTaskId(), task);
-                finish();
-
-            }
-        });
+            });
 
 
-    }
+        }
 
 
     private void updateTask(String id, Task task) {
