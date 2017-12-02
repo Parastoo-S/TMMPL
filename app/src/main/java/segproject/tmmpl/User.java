@@ -1,6 +1,7 @@
 package segproject.tmmpl;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,6 +11,8 @@ public class User {
     private String _id;
     private String _username;
     private String _avatar_id;
+    private String _role;
+//    private
     private static User activeUser;
 
 
@@ -19,15 +22,17 @@ public class User {
     public User() {
     }
 
-    public User(String id, String username) {
+    public User(String id, String username, String role) {
         this._id = id;
         this._username = username;
+        this._role = role;
 //        _avatar_id = avatar_id;
     }
 
-        public User(String username) {
+        public User(String username, String role) {
         this._username = username;
 //        _avatar_id = avatar_id;
+            this._role = role;
     }
 
     public void setId(String id) {
@@ -82,6 +87,16 @@ public class User {
     public List<String> getAssignedTasks(){
         return _assignedTasks;
     }
+
+
+    public String getRole(){
+        return _role;
+    }
+
+    public void setRole(String role){
+        _role = role;
+    }
+
 
 
 }

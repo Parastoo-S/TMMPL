@@ -30,6 +30,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class TaskPage extends AppCompatActivity {
     Button buttonShowUsersTasks;
     DatabaseReference databaseUserTasks;
     ArrayList<String> taskIds = new ArrayList<>();
-    ArrayList<Task> activeTasks = new ArrayList<>();
+//    ArrayList<Task> activeTasks = new ArrayList<>();
     FloatingActionButton addTaskFab;
 
     @Override
@@ -75,6 +76,9 @@ public class TaskPage extends AppCompatActivity {
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
         addTaskButton = (Button) findViewById(R.id.addTaskButton);
         currentUser = User.getActiveUser();
+//        Intent intent = getIntent();
+//        activeUser = (User) intent.getSerializableExtra("activeUser");
+
         buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
         addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
 
@@ -82,12 +86,16 @@ public class TaskPage extends AppCompatActivity {
         addTaskFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TaskPage.this, AddTask.class));
+
+
+                Intent newActivity = new Intent(TaskPage.this, AddTask.class);
+//                newActivity.putExtra("activeUser", activeUser);
+                startActivity(newActivity);
             }
         });
 
 
-        databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(User.getActiveUser().getId()).child("assignedTaskIds");
+        databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getId()).child("assignedTaskIds");
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         tasks = new ArrayList<>();
@@ -114,6 +122,7 @@ public class TaskPage extends AppCompatActivity {
 
 //                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
                 Intent newActivity = new Intent(TaskPage.this, ViewTask.class);
+//                newActivity.putExtra("activeTask", task);
                 startActivity(newActivity);
 
             }

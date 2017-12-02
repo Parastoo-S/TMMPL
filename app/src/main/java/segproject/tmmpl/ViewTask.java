@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class ViewTask extends AppCompatActivity {
     ImageView deleteButton;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,9 @@ public class ViewTask extends AppCompatActivity {
         setContentView(R.layout.activity_view_task);
 
         activeTask = Task.getActiveTask();
-
+//        Task task = (Task) getIntent().getExtras().getSerializable("activeUser");
+//        Intent intent = getIntent();
+//        activeTask = (Task) intent.getSerializableExtra("activeTask");
         taskTitle = (TextView) findViewById(R.id.taskTitle);
         assignedUserName = (TextView) findViewById(R.id.assignedUserName);
         description = (EditText) findViewById(R.id.description);
@@ -61,8 +65,14 @@ public class ViewTask extends AppCompatActivity {
         taskTitle.setText(activeTask.getTaskName());
 
         //** these two lines give exceptions, don't know why
-//        creatorName.setText(activeTask.getCreatorUser().getUsername());
-//        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
+        creatorName.setText(activeTask.getCreatorUser().getUsername());
+        if (activeTask.getAssignedUser() != null){
+            assignedUserName.setText(activeTask.getAssignedUser().getUsername());
+        }
+        else{
+            assignedUserName.setText("No Users assigned");
+        }
+
 
 
         description.setText(activeTask.getDescription());
@@ -81,13 +91,13 @@ public class ViewTask extends AppCompatActivity {
         dueTime.setText(mHour + ":" + mMinute);
 
 
-
-
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewTask.this, EditTask.class);
                 startActivity(intent);
+//                intent.putExtra("activeTask", activeTask);
+//                startActivityForResult(intent, 1);
             }
         });
 
@@ -103,7 +113,7 @@ public class ViewTask extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteTask(Task.getActiveTask().getTaskId());
+                        deleteTask(activeTask.getTaskId());
                         dialog.dismiss();
                         finish();
 
@@ -121,15 +131,29 @@ public class ViewTask extends AppCompatActivity {
                 alert.show();
 
 
-
             }
         });
+
     }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == 1){
+//            if(resultCode == RESULT_OK) {
+//                if (data != null) {
+//                    activeTask = (Task) data.getSerializableExtra("updatedTask");
+////                    taskTitle.setText(activeTask.getTaskName());
+//                }
+//            }
+//        }
+//    }
 
     @Override
     protected void onStart() {
 
         super.onStart();
+
         activeTask = Task.getActiveTask();
         taskTitle.setText(activeTask.getTaskName());
 //        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
@@ -148,7 +172,12 @@ public class ViewTask extends AppCompatActivity {
 
         dueDate.setText(mYear + "/" + mMonth + "/" + mDay);
         dueTime.setText(mHour + ":" + mMinute);
-
+        if (activeTask.getAssignedUser() != null){
+            assignedUserName.setText(activeTask.getAssignedUser().getUsername());
+        }
+        else{
+            assignedUserName.setText("No Users assigned");
+        }
     }
 
 
