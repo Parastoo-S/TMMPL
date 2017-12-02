@@ -1,30 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewTaskName" android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" android:text=""/>
-    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewDescription" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>
 
-    <TextView
-        android:id="@+id/dueDateTime"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/statusTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Status" />
+        <ImageView
+            android:id="@+id/profilePicImage"
+            android:layout_width="65dp"
+            android:layout_height="74dp"
+            app:srcCompat="@drawable/i1" />
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textViewTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:gravity="fill_vertical"
+            android:paddingLeft="15dp"
+            android:text="Text"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
-    <CheckBox
-        android:id="@+id/completed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Completed" />
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/dueDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
+
+        <CheckBox
+            android:id="@+id/completed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="completed"
+            android:focusable="false"/>
+
+    </LinearLayout>
+
+    <!--<TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewPrice" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>-->
 </LinearLayout>
-
