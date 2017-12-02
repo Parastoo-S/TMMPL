@@ -51,6 +51,7 @@ public class TaskPage extends AppCompatActivity {
     User currentUser;
     Button buttonShowUsersTasks;
     DatabaseReference databaseUserTasks;
+    DatabaseReference databaseEquipmentsTask;
     ArrayList<String> taskIds = new ArrayList<>();
     ArrayList<Task> activeTasks = new ArrayList<>();
     FloatingActionButton addTaskFab;
@@ -73,7 +74,7 @@ public class TaskPage extends AppCompatActivity {
 //        editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
 //        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
-        addTaskButton = (Button) findViewById(R.id.addTaskButton);
+        //addTaskButton = (Button) findViewById(R.id.addTaskButton);
         currentUser = User.getActiveUser();
         buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
         addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
@@ -91,6 +92,7 @@ public class TaskPage extends AppCompatActivity {
 
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         tasks = new ArrayList<>();
+
 
         buttonShowUsersTasks.setOnClickListener(new View.OnClickListener() {
             @Override

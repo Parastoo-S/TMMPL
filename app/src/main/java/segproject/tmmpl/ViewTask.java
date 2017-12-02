@@ -36,7 +36,7 @@ public class ViewTask extends AppCompatActivity {
     TextView taskTitle;
     ImageView editButton;
     ImageView deleteButton;
-
+    TextView equipmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class ViewTask extends AppCompatActivity {
         dueDate = (TextView) findViewById(R.id.dueDate);
         dueTime = (TextView) findViewById(R.id.dueTime);
         creatorName = (TextView) findViewById(R.id.creatorName);
+        equipmentList = (TextView)findViewById(R.id.equipmentList);
 
         editButton = (ImageView) findViewById(R.id.editTask);
         deleteButton = (ImageView) findViewById(R.id.deleteTask);
@@ -66,6 +67,13 @@ public class ViewTask extends AppCompatActivity {
 
 
         description.setText(activeTask.getDescription());
+
+        String equipments="";
+        for (String s : activeTask.getequipments())
+        {
+            equipments += s + ", ";
+        }
+        equipmentList.setText(equipments);
 
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(activeTask.getDueDate());

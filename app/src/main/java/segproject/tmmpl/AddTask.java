@@ -181,12 +181,12 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
             editTextEquipment.setText("");
 
-            Toast.makeText(this,"task added", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Task added", Toast.LENGTH_LONG).show();
 //            Toast.makeText(this,task.getCreatorUser().getUsername(), Toast.LENGTH_LONG).show();
 //            Toast.makeText(this,task.getTaskName(), Toast.LENGTH_LONG).show();
         } else{
 
-            Toast.makeText(this,"Please enter a name", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please fill out all sections", Toast.LENGTH_LONG).show();
         }
 
     }
