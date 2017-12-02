@@ -77,7 +77,7 @@ public class UserLogin extends AppCompatActivity {
         buttonAddUser = (Button) findViewById(R.id.newUser);
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
-        role = (Spinner) findViewById(R.id.role);
+       // role = (Spinner) findViewById(R.id.role);
 
 
 

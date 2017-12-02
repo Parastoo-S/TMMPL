@@ -111,12 +111,11 @@ public class TaskPage extends AppCompatActivity {
         buttonShowUsersTasks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton view, boolean checked){
-                if(!checked){
+                if(checked){
+                    activeUserTasks();
+                }else{
                     TaskList tasksAdapter = new TaskList(TaskPage.this,tasks);
                     listViewTasks.setAdapter(tasksAdapter);
-                }else{
-
-                    activeUserTasks();
                 }
             }
         });
