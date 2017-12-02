@@ -149,6 +149,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
        // User activeUser = Singleton.getInstance();
 
         List<String> equipment = Arrays.asList(editTextEquipment.getText().toString().split(","));
+        for(String text : equipment){
+            text.trim();
+        }
 
 
         if(!TextUtils.isEmpty(name)){
@@ -161,7 +164,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
             User.getActiveUser().addAssignedTask(task.getTaskId());
 
-            databaseUsers.child(User.getActiveUser().getId()).child("assignedTaskIds").push().setValue(User.getActiveUser().getAssignedTasks());
+            databaseUsers.child(User.getActiveUser().getId()).child("assignedTaskIds").push().setValue(task.getTaskId());
 
            // User.getActiveUser().addAssignedTask(task);
 
@@ -170,7 +173,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 //            }
            // for(User current : databaseTasks.child("users")){
 
-           // }
+           //
             editTextTaskName.setText("");
             editTextDescription.setText("");
 

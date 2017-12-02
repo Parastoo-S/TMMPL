@@ -45,7 +45,6 @@ public class TaskPage extends AppCompatActivity {
 
     EditText editTextTaskName;
     EditText editTextDescription;
-    Button addTaskButton;
     ListView listViewTasks;
     DatabaseReference databaseTasks;
     List<Task> tasks;
@@ -81,7 +80,7 @@ public class TaskPage extends AppCompatActivity {
 
         buttonShowUsersTasks = (Switch) findViewById(R.id.showSwitch);
 
-       // buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
+        //buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
         addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
 
 
@@ -100,32 +99,20 @@ public class TaskPage extends AppCompatActivity {
         tasks = new ArrayList<>();
 
         // TODO: Check this out
-//        buttonShowUsersTasks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-//
-//
-//        buttonShowUsersTasks.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onCheckedChanged(CompoundButton view, boolean checked){
-//                if(checked){
-//                    activeUserTasks();
-//                }else{
-//                    TaskList tasksAdapter = new TaskList(TaskPage.this,tasks);
-//                    listViewTasks.setAdapter(tasksAdapter);
-//                }
-//            }
-//        });
+        //buttonShowUsersTasks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
+        buttonShowUsersTasks.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton view, boolean checked){
+                if(!checked){
+                    TaskList tasksAdapter = new TaskList(TaskPage.this,tasks);
+                    listViewTasks.setAdapter(tasksAdapter);
+                }else{
 
-//        addTaskButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent addTask = new Intent(TaskPage.this, AddTask.class);
-//                startActivity(addTask);
-//            }
-//        });
-
-
+                    activeUserTasks();
+                }
+            }
+        });
 
 
 //        TextView activeUser = (TextView) findViewById(R.id.activeUser);
@@ -176,6 +163,7 @@ public class TaskPage extends AppCompatActivity {
         databaseUserTasks.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                taskIds.clear();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     taskIds.add(postSnapshot.getValue().toString());
 
@@ -188,28 +176,41 @@ public class TaskPage extends AppCompatActivity {
             }
         });
 
-        databaseTasks.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //tasks.clear();
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    Task task = postSnapshot.getValue(Task.class);
-                    for(String id : taskIds){
-                        if(task.getTaskId().equals(id)) {
-                            activeTasks.add(task);
-                        }
-                    }
+        activeTasks.clear();
+        for(Task check : tasks){
+            for(String id : taskIds){
+                //TODO: it is not grabbing the proper info form the database
+                if(check.getTaskId().equals(id)){
+                    activeTasks.add(check);
                 }
-
-                TaskList tasksAdapter = new TaskList(TaskPage.this,activeTasks);
-                listViewTasks.setAdapter(tasksAdapter);
             }
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        TaskList activeTasksAdapter = new TaskList(TaskPage.this,activeTasks);
+        listViewTasks.setAdapter(activeTasksAdapter);
 
-            }
-        });
+//        databaseTasks.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                //tasks.clear();
+//                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+//                    Task task = postSnapshot.getValue(Task.class);
+//                    for(String id : taskIds){
+//                        if(task.getTaskId().equals(id)) {
+//                            activeTasks.add(task);
+//                        }
+//                    }
+//                }
+//
+//                TaskList tasksAdapter = new TaskList(TaskPage.this,activeTasks);
+//                listViewTasks.setAdapter(tasksAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
 
