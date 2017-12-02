@@ -149,9 +149,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
        // User activeUser = Singleton.getInstance();
 
         List<String> equipment = Arrays.asList(editTextEquipment.getText().toString().split(","));
-        for(String text : equipment){
-            text.trim();
-        }
 
 
         if(!TextUtils.isEmpty(name)){
