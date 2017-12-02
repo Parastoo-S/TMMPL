@@ -3,8 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#1c1d1e</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="seaFoam">#2DFFA6</color>
+    <color name="babyBlue">#33C7FF</color>
+
+    <color name="blue1">#43cbc9</color>
+    <color name="blue2">#52aed3</color>
+    <color name="blue3">#4873a6</color>
+    <color name="blue4">#4873a6</color>
+    <color name="blue5">#5a5387</color>
+
     <color name="color1">#4d98cf</color>
     <color name="color2">#5a5386</color>
     <color name="color3">#6cd5cc</color>
     <color name="color4">#4674a6</color>
+
 </resources>
