@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/color3"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/taskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:text="Task Title"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/editTask"
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="110dp"
+                android:layout_marginTop="15dp"
+                app:srcCompat="@drawable/edit" />
+
+            <ImageView
+                android:id="@+id/deleteTask"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                app:srcCompat="@drawable/trash" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/assignedUserImage"
+            android:layout_width="76dp"
+            android:layout_height="65dp"
+            android:cropToPadding="false"
+            app:srcCompat="@drawable/i5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/assignedUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.51"
+                android:text="Assigned user"
+                android:textColor="@android:color/background_dark"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="assigned"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="128dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="123dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/timer" />
+
+                <TextView
+                    android:id="@+id/dueTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="5h"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/calender" />
+
+                <TextView
+                    android:id="@+id/dueDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="21dp"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Today"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="127dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/icon" />
+
+            <TextView
+                android:id="@+id/creatorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Creator name"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="Creator"
+                android:textColor="@android:color/background_dark"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/equipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equipments:"
+            android:textColor="@android:color/background_dark"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/equipmentList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp">
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:background="@drawable/notes"
+            android:editable="false"
+            android:ems="10"
+            android:hint="Enter Notes"
+            android:inputType="textPersonName"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:scaleType="fitCenter"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+</LinearLayout>

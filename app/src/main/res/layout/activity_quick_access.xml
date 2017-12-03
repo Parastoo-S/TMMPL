@@ -9,14 +9,13 @@
     android:id="@+id/drawerLayout"
     >
 
-
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
 
-        app:menu="@menu/navigation_menu"
         android:layout_gravity="start"
-        app:headerLayout="@layout/navigation_header">
+        app:headerLayout="@layout/navigation_header"
+        app:menu="@menu/navigation_menu">
 
 
     </android.support.design.widget.NavigationView>
