@@ -3,6 +3,8 @@ package segproject.tmmpl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -39,7 +41,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskPage extends AppCompatActivity {
+public class TaskPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 //    ListView lst;
 //    String[] taskName = {"Clean Car", "Take Out Trash", "Clean Room", "Pickup Allie", "Cancel Dentist Appointment", "Go Shopping"};
@@ -69,6 +71,8 @@ public class TaskPage extends AppCompatActivity {
         setContentView(R.layout.activity_task_page);
 
         nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        nDrawerLayout.bringToFront();
+        nDrawerLayout.requestLayout();
         nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open ,R.string.close );
 
         nDrawerLayout.addDrawerListener(nToggle);
@@ -226,11 +230,59 @@ public class TaskPage extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+////        int id = item.getItemId();
+//
+////        return true;
         if(nToggle.onOptionsItemSelected(item)){
-            return true;
+
+            return false;
+
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Added this to see if it solves the problem, it doesn't :(
+    public boolean onNavigationItemSelected(MenuItem item){
+        Intent newActivity;
+        switch (item.getItemId()){
+
+            case R.id.tasks:
+                newActivity = new Intent(TaskPage.this, TaskPage.class);
+                startActivity(newActivity);
+                break;
+
+            case R.id.people:
+                newActivity = new Intent(TaskPage.this, PeopleActivity.class);
+                startActivity(newActivity);
+
+            case R.id.shopping:
+                newActivity = new Intent(TaskPage.this, Shopping.class);
+                startActivity(newActivity);
+        }
+        DrawerLayout nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        nDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+
+    }
+
+    public void goToTasks(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, TaskPage.class);
+        startActivity(newActivity);
+    }
+    public void goToPeople(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, PeopleActivity.class);
+        startActivity(newActivity);
+    }
+
+    public void goToShopping(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, Shopping.class);
+        startActivity(newActivity);
+    }
+
+    public void goToLogin(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, UserLogin.class);
+        startActivity(newActivity);
     }
 
 }
