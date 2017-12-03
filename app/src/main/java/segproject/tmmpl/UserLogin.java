@@ -122,6 +122,7 @@ public class UserLogin extends AppCompatActivity {
 //        return true;
 //    }
 
+
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        // Handle action bar item clicks here. The action bar will
@@ -288,6 +289,7 @@ public class UserLogin extends AppCompatActivity {
         return true;
     }
 
+
     private void addUser(String name) {
         String username = name;
 //        double price=Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
@@ -306,6 +308,12 @@ public class UserLogin extends AppCompatActivity {
             Toast.makeText(this,"Please enter a username", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+
+    public void goToQuickAccess(View view){
+        Intent startNewActivity = new Intent(this, QuickAccess.class);
+        startActivity(startNewActivity);
     }
 
 }

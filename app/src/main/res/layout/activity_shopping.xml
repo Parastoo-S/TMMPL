@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="segproject.tmmpl.Shopping"
+    >
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+
+    <ListView
+    android:id="@+id/listView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical">
+
+    <CheckedTextView
+    android:id="@+id/checkedTextView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:checked="true"
+    android:text="CheckedTextView" />
+    </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+
+    <LinearLayout
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_weight="1"
+    android:orientation="horizontal">
+
+    <Button
+    android:id="@+id/button1"
+    android:layout_width="45dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:clickable="true"
+    android:text="+" />
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="horizontal">
+
+    <android.support.design.widget.TextInputLayout
+    android:id="@+id/editText2"
+    android:layout_width="267dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <EditText
+    android:id="@+id/editText1"
+    android:layout_width="280dp"
+    android:layout_height="41dp"
+    android:contextClickable="true"
+    android:layout_gravity="left|center"
+    android:hint="new item"
+    android:ems="10"/>
+    </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
+
+
+-->
+
+
+
+
+
+
+
+
+
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="segproject.tmmpl.Shopping">
+
+
+    <ListView
+        android:id="@+id/ShoppingList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/addItem"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/darker_gray"></ListView>
+
+
+    <EditText
+        android:id="@+id/editTextItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="new item" />
+
+    <Button
+        android:id="@+id/addItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextItem"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:text="+" />
+
+
+</RelativeLayout>
+
+
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:orientation="vertical" >-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/editText1"-->
+        <!--android:layout_width="240dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@+id/button1"-->
+        <!--android:layout_marginLeft="19dp"-->
+        <!--android:layout_marginStart="19dp"-->
+        <!--android:layout_toEndOf="@+id/button1"-->
+        <!--android:layout_toRightOf="@+id/button1"-->
+        <!--android:contextClickable="true"-->
+        <!--android:hint="new item"-->
+        <!--android:inputType="text" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button1"-->
+        <!--android:layout_width="45dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginLeft="48dp"-->
+        <!--android:layout_marginStart="48dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:clickable="true"-->
+        <!--android:onClick="onClick"-->
+        <!--android:text="+" />-->
+
+    <!--/>-->
+
+    <!--<ListView-->
+        <!--android:id="@android:id/list"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/editText1"-->
+        <!--android:layout_marginTop="25dp"-->
+        <!--android:background="?attr/colorPrimaryDark"-->
+        <!--android:stackFromBottom="true" />-->
+
+<!--</RelativeLayout>-->
+
+
+
+
+<!--
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="segproject.tmmpl.Shopping">
+    //xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignLeft="@+id/editText1"
+                android:layout_below="@+id/button1"></ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editText1"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:text="+" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Enter new item" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+-->
+
+
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--tools:context="segproject.tmmpl.Shopping">-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="400dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:orientation="vertical">-->
+
+
+            <!--<ListView-->
+                <!--android:id="@+id/listView1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:scrollbars="vertical">-->
+
+                <!--<CheckedTextView-->
+                    <!--android:id="@+id/checkedTextView1"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:checkMark="?android:attr/listChoiceIndicatorMultiple"-->
+                    <!--android:checked="true"-->
+                    <!--android:text="CheckedTextView" />-->
+            <!--</ListView>-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/button1"-->
+                    <!--android:layout_width="45dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:clickable="true"-->
+                    <!--android:text="+" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<android.support.design.widget.TextInputLayout-->
+                    <!--android:id="@+id/editText2"-->
+                    <!--android:layout_width="267dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1">-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/editText1"-->
+                        <!--android:layout_width="280dp"-->
+                        <!--android:layout_height="41dp"-->
+                        <!--android:contextClickable="true"-->
+                        <!--android:layout_gravity="left|center"-->
+                        <!--android:hint="new item"-->
+                        <!--android:ems="10"/>-->
+                <!--</android.support.design.widget.TextInputLayout>-->
+            <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
+<!--</android.support.constraint.ConstraintLayout>-->

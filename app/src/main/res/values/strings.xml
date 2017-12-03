@@ -2,10 +2,10 @@
     <string name="app_name">TMMPL</string>
     <string name="action_settings">Settings</string>
 
-    <string-array name="role">
-        <item>Parent</item>
-        <item>Child</item>
-    </string-array>
 
+    <string name="title_activity_spashscreen">spashscreen</string>
+
+    <string name="open">open</string>
+    <string name="close">Close</string>
 
 </resources>

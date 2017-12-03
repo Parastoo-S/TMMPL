@@ -19,11 +19,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".PeopleActivity" />
          <activity android:name=".TaskPage" />
         <activity android:name=".AddTask" />
         <activity android:name=".EditTask" />
         <activity android:name=".ViewTask"></activity>
+
+
+        <activity android:name=".PeopleActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:label="TMMPL"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name=".QuickAccess"></activity>
+
+        <activity android:name=".Shopping">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>
