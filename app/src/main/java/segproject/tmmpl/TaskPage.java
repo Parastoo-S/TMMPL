@@ -3,10 +3,13 @@ package segproject.tmmpl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -37,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskPage extends AppCompatActivity {
+
 //    ListView lst;
 //    String[] taskName = {"Clean Car", "Take Out Trash", "Clean Room", "Pickup Allie", "Cancel Dentist Appointment", "Go Shopping"};
 //    String[] taskDescription = {"Deadline: 11/15/2017", "Deadline: 11/12/2017", "Note: Vaccume afterwards too", "Deadline: 11/11/2017 at 3:15pm", "Deadline: 11/10/2017", "Note: Do it ASAP"};
@@ -57,21 +61,19 @@ public class TaskPage extends AppCompatActivity {
     ArrayList<String> taskIds = new ArrayList<>();
     ArrayList<Task> activeTasks = new ArrayList<>();
     FloatingActionButton addTaskFab;
-
+    private DrawerLayout nDrawerLayout;
+    private ActionBarDrawerToggle nToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_page);
 
+        nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open ,R.string.close );
 
-//        FloatingActionButton addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
-//        addTaskFab.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent myIntent = new Intent(view.getContext(), AddTask.class);
-//                startActivityForResult(myIntent, 0);
-//            }
-//
-//        });
+        nDrawerLayout.addDrawerListener(nToggle);
+        nToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 //        editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
 //        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
@@ -222,10 +224,13 @@ public class TaskPage extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(nToggle.onOptionsItemSelected(item)){
+            return true;
+        }
 
-    public void startNewTaskActivity(View view){
-        Intent addTask = new Intent(TaskPage.this, AddTask.class);
-        startActivity(addTask);
+        return super.onOptionsItemSelected(item);
     }
 
 }
