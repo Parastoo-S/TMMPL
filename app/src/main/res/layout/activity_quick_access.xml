@@ -9,7 +9,6 @@
     android:id="@+id/drawerLayout"
     >
 
-
     <android.support.design.widget.NavigationView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
