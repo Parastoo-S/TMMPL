@@ -68,9 +68,9 @@ public class UserLogin extends AppCompatActivity {
         nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open ,R.string.close );
 
-        nDrawerLayout.addDrawerListener(nToggle);
-        nToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        nDrawerLayout.addDrawerListener(nToggle);
+//        nToggle.syncState();
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
 //        editAvatartId = (EditText) findViewById(R.id.editAvatartId);
