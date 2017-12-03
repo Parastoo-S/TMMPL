@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 
 import android.media.Image;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +47,8 @@ public class UserLogin extends AppCompatActivity {
     DatabaseReference databaseUsers;
     List<User> users;
 
-
+    private DrawerLayout nDrawerLayout;
+    private ActionBarDrawerToggle nToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,12 @@ public class UserLogin extends AppCompatActivity {
 //            }
 //        });
 
+        nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open ,R.string.close );
+
+        nDrawerLayout.addDrawerListener(nToggle);
+        nToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
 //        editAvatartId = (EditText) findViewById(R.id.editAvatartId);

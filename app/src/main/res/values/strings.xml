@@ -6,5 +6,7 @@
 
     <string name="open">open</string>
     <string name="close">Close</string>
+    <string name="title_activity_quick_access2">QuickAccess2</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

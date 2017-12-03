@@ -1,16 +1,27 @@
 package segproject.tmmpl;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Shopping extends AppCompatActivity {
 
@@ -18,10 +29,11 @@ public class Shopping extends AppCompatActivity {
     EditText editTextItem;
     Button addButton;
     ListView ShoppingList;
-    DatabaseReference databaseList;
+    DatabaseReference databaseShoppingList;
     //ArrayList<String> al;
     //List<String> sop;
     //ArrayAdapter<String> aa;
+    List<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +46,9 @@ public class Shopping extends AppCompatActivity {
         addButton = (Button) findViewById(R.id.addItem);
         ShoppingList = (ListView) findViewById(R.id.ShoppingList);
 
-        databaseList = FirebaseDatabase.getInstance().getReference("list");
+        databaseShoppingList = FirebaseDatabase.getInstance().getReference("shoppingList");
 
-
+        items = new ArrayList<>();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,24 +64,66 @@ public class Shopping extends AppCompatActivity {
 //                .setText("");
             }
         });
+
+        ShoppingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Item item = items.get(i);
+                deleteItem(item.getItemId());
+            }
+        });
+    }
+
+    protected void onStart() {
+
+        super.onStart();
+
+        databaseShoppingList.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                items.clear();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    Item item = postSnapshot.getValue(Item.class);
+                    items.add(item);
+                }
+
+                ShoppingListAdapter itemAdapter = new ShoppingListAdapter(Shopping.this,items);
+                ShoppingList.setAdapter(itemAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     private void addItem(String item) {
         String newItem = item;
 
 
         if (!TextUtils.isEmpty(newItem)) {
-            String id = databaseList.push().getKey();
-//            User user = new User(id, username);
+            String id = databaseShoppingList.push().getKey();
+            Item itemAdded = new Item(id, newItem);
 
-            databaseList.child(id).setValue(newItem);
+            databaseShoppingList.child(id).setValue(itemAdded);
 
             Toast.makeText(this, "Item added", Toast.LENGTH_LONG).show();
+            editTextItem.setText("");
         } else {
 
             Toast.makeText(this, "Please enter an item", Toast.LENGTH_LONG).show();
         }
 
     }
+
+    private boolean deleteItem(String id) {
+
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("shoppingList").child(id);
+        dR.removeValue();
+        Toast.makeText(getApplicationContext(), "Item Deleted", Toast.LENGTH_LONG).show();
+        return true;
+    }
+
 
 //        protected void onStart() {
 //
