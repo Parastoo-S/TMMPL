@@ -32,11 +32,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.data;
 
 public class UserLogin extends AppCompatActivity {
     EditText editTextUsername;
@@ -46,6 +49,8 @@ public class UserLogin extends AppCompatActivity {
     ListView listViewUsers;
     DatabaseReference databaseUsers;
     List<User> users;
+    ImageView buttonSetAvatar;
+    Spinner role;
 
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
@@ -75,10 +80,15 @@ public class UserLogin extends AppCompatActivity {
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
 //        editAvatartId = (EditText) findViewById(R.id.editAvatartId);
 
+        buttonSetAvatar = (ImageView) findViewById(R.id.avatar);
+
         listViewUsers = (ListView) findViewById(R.id.listViewUsers);
         buttonAddUser = (Button) findViewById(R.id.newUser);
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
+       // role = (Spinner) findViewById(R.id.role);
+
+
 
         //adding an onclicklistener to button
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +107,20 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
+        listViewUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                User user = users.get(i);
+                //User currentUser = Singleton.getInstance(user);
+                user.setActiveUser(user);
 
+//                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
+                Intent newActivity = new Intent(UserLogin.this, TaskPage.class);
+//                newActivity.putExtra("activeUser", user);
+                startActivity(newActivity);
+
+            }
+        });
 
     }
 
@@ -204,6 +227,13 @@ public class UserLogin extends AppCompatActivity {
 //        dialogBuilder.setTitle(username);
         final AlertDialog b = dialogBuilder.create();
         b.show();
+        // TODO: FiX this
+//        buttonSetAvatar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                selectAvatar();
+//            }
+//        });
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +242,40 @@ public class UserLogin extends AppCompatActivity {
                 b.dismiss();
             }
         });
+
     }
+//  // TODO: tifosdlfnjds, 
+//    private void selectAvatar(){
+//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+//        LayoutInflater inflater = getLayoutInflater();
+//        final View dialogView2 = inflater.inflate(R.layout.activity_set_avatar, null);
+//        dialogBuilder.setView(dialogView2);
+//
+//        String avatarName = "i1";
+//        switch (data.getIntExtra("imageID",R.id.i1)) {
+//            case R.id.i1:
+//                avatarName = "i1";
+//                break;
+//            case R.id.i2:
+//                avatarName = "i2";
+//                break;
+//            case R.id.i3:
+//                avatarName = "i3";
+//                break;
+//            case R.id.i4:
+//                avatarName = "i4";
+//                break;
+//            case R.id.i5:
+//                avatarName = "i5";
+//                break;
+//            case R.id.i6:
+//                avatarName = "i6";
+//                break;
+//            default:
+//                avatarName = "i1";
+//                break;
+//        }
+//    }
 
 
     private void updateUser(String id, String username) {
