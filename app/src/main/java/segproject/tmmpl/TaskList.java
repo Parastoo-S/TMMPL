@@ -50,41 +50,43 @@ public class TaskList extends ArrayAdapter<Task> {
         final Task clickedTask = tasks.get(position);
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_task_list, null, true);
-
+        databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.textViewTaskName);
         TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewDescription);
         TextView dueDateTime = (TextView) listViewItem.findViewById(R.id.dueDateTime);
 
         //final TextView status = (TextView) listViewItem.findViewById(R.id.status);
 
-      //  final CheckBox completed = (CheckBox)listViewItem.findViewById(R.id.completed);
         ImageView profilePicImage = (ImageView)listViewItem.findViewById(R.id.profilePicImage);
         Button statusBtn = (Button)listViewItem.findViewById(R.id.statusBtn);
-      /*  completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+     /* completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(completed.isChecked()==false){
-
-                    status.setText("incomplete");
-
-                }
+//                if(completed.isChecked()==false){
+//
+////                    status.setText("incomplete");
+//
+//                }
 
                 if(completed.isChecked()==true) {
 
                     showStatusDialog(clickedTask);
 
-                    status.setText("Complete");
-                    Toast.makeText(getContext(), "Task Completed",
-                            Toast.LENGTH_LONG).show();
+//                    status.setText("Complete");
+//                    Toast.makeText(getContext(), "Task Completed",
+//                            Toast.LENGTH_LONG).show();
 
                 }
             }
-        });*/
-
+        });
+        */
+//
         statusBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+//                showStatusDialog(clickedTask);
+
                 final Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.radiobutton_dialog);
@@ -93,10 +95,10 @@ public class TaskList extends ArrayAdapter<Task> {
                                          stringList.add("RadioButton " + (i + 1));
                                      }*/
                 stringList.add("Complete");
-                stringList.add("Inomplete");
+                stringList.add("InComplete");
                 stringList.add("Defferred");
 
-                RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
+                final RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
 
                 for (int i = 0; i < stringList.size(); i++) {
                     RadioButton rb = new RadioButton(context); // dynamically creating RadioButton and adding to RadioGroup.
@@ -105,11 +107,29 @@ public class TaskList extends ArrayAdapter<Task> {
                 }
 
                 dialog.show();
+
+                Button setStatus = (Button) dialog.findViewById(R.id.setStatus);
+
+                setStatus.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        int selectedId = rg.getCheckedRadioButtonId();
+
+                        // find the radio button by returned id
+                        RadioButton radioButton = (RadioButton)dialog.findViewById(selectedId);
+//                        clickedTask.setStatus(radioButton.getText().toString());
+                        clickedTask.setStatus("Test");
+                        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("users").child(clickedTask.getTaskId());
+
+                        dR.setValue(clickedTask);
+                        dialog.dismiss();
+                    }
+                });
+
             }
+
         });
 //        TextView textViewCreatorName = (TextView) listViewItem.findViewById(R.id.textViewCreatorName);
 //        TextView textViewAssignedUserName = (TextView) listViewItem.findViewById(R.id.textViewAssignedUserName);
-
 
         Task task = tasks.get(position);
         textViewName.setText(task.getTaskName());
@@ -138,9 +158,9 @@ public class TaskList extends ArrayAdapter<Task> {
     }
 
 
-    public void showStatusDialog(Task task){
+    public void showStatusDialog(final Task task){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        LayoutInflater inflater = (context).getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.set_status_dialog, null);
         dialogBuilder.setView(dialogView);
 
@@ -160,9 +180,11 @@ public class TaskList extends ArrayAdapter<Task> {
 
                 // find the radio button by returned id
                 RadioButton radioButton = (RadioButton)dialogView.findViewById(selectedId);
-                radioButton.getText();
+                task.setStatus(radioButton.getText().toString());
 
-                Toast.makeText(TaskList.this,, Toast.LENGTH_SHORT).show();
+                DatabaseReference dR = FirebaseDatabase.getInstance().getReference("users").child(task.getTaskId());
+
+                dR.setValue(task);
             }
         });
 

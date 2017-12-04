@@ -20,7 +20,7 @@ public class Task {
     private String _description;
     private long _dueDate;
     private List<String> _equipment;
-    private Boolean _completed;
+    private String _status;
 
     private Collection<User> assignedUser;
 //    private User creatorUser;
@@ -38,7 +38,7 @@ public class Task {
         this._description = description;
         this._assignedUser = assignedUser;
         this._dueDate = dueDate;
-        this._completed = false;
+        this._status = "inComplete";
         this._creator = creator;
         this._equipment = equipment;
     }
@@ -101,12 +101,12 @@ public class Task {
         return _equipment;
     }
 
-    public void setStatus(Boolean status){
-        _completed = status;
+    public void setStatus(String status){
+        _status = status;
     }
 
-    public Boolean getStatus(){
-        return _completed;
+    public String getStatus(){
+        return _status;
     }
 
 
