@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static segproject.tmmpl.R.id.list;
 import static segproject.tmmpl.R.id.listViewTasks;
 
 public class PeopleTaskList extends AppCompatActivity {
@@ -26,10 +27,14 @@ public class PeopleTaskList extends AppCompatActivity {
     ArrayList<String> taskIds = new ArrayList<>();
     ArrayList<Task> tasks = new ArrayList<>();
 
+    ListView listViewPeople;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.people_task_list);
+
+        listViewPeople = (ListView) findViewById(R.id.list);
 
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
@@ -41,6 +46,9 @@ public class PeopleTaskList extends AppCompatActivity {
                     User user = postSnapshot.getValue(User.class);
                     users.add(user);
                 }
+
+                PeopleCustomAdapter peopleAdapter = new PeopleCustomAdapter(PeopleTaskList.this,users);
+                listViewPeople.setAdapter(peopleAdapter);
             }
 
             @Override
@@ -49,68 +57,70 @@ public class PeopleTaskList extends AppCompatActivity {
             }
         });
 
-        databaseNextTask = FirebaseDatabase.getInstance().getReference("tasks");
+//        databaseNextTask = FirebaseDatabase.getInstance().getReference("tasks");
+//
+//        databaseNextTask.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                tasks.clear();
+//                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+//                    Task task = postSnapshot.getValue(Task.class);
+//                    tasks.add(task);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//
+//        for(User user : users){
+//            databaseTaskCount = FirebaseDatabase.getInstance().getReference("users").child(user.getId()).child("assignedTaskIds");
+//
+//            databaseTaskCount.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//                    taskIds.clear();
+//                    Integer count = 0;
+//                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+//                        taskIds.add(postSnapshot.getValue().toString());
+//                        count++;
+//                    }
+//                    taskCount.add(count);
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            });
+//
+//            long minDueDate = Long.MAX_VALUE;
+//            String closestTask = "";
+//            for(Task task : tasks){
+//                for(String id : taskIds){
+//                    if(task.getTaskId().equals(id)){
+//                        if(task.getDueDate() < minDueDate){
+//                            closestTask = task.getTaskName();
+//                            minDueDate = task.getDueDate();
+//                        }
+//                    }
+//                }
+//            }
+//            nextTask.add(closestTask);
+//        }
 
-        databaseNextTask.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                tasks.clear();
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    Task task = postSnapshot.getValue(Task.class);
-                    tasks.add(task);
-                }
-            }
+       // int[] avatarList = {R.drawable.i1, R.drawable.i2, R.drawable.i3, R.drawable.i4, R.drawable.i5, R.drawable.i6};
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+//        ListView listView = (ListView) findViewById(R.id.list);
+//
+//        PeopleCustomAdapter adapter = new PeopleCustomAdapter(this, users);
 
-            }
-        });
-
-
-        for(User user : users){
-            databaseTaskCount = FirebaseDatabase.getInstance().getReference("users").child(user.getId()).child("assignedTaskIds");
-
-            databaseTaskCount.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    taskIds.clear();
-                    Integer count = 0;
-                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                        taskIds.add(postSnapshot.getValue().toString());
-                        count++;
-                    }
-                    taskCount.add(count);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            long minDueDate = Long.MAX_VALUE;
-            String closestTask = "";
-            for(Task task : tasks){
-                for(String id : taskIds){
-                    if(task.getTaskId().equals(id)){
-                        if(task.getDueDate() < minDueDate){
-                            closestTask = task.getTaskName();
-                            minDueDate = task.getDueDate();
-                        }
-                    }
-                }
-            }
-            nextTask.add(closestTask);
-        }
-
-        String[] choreList = {"Alex", "Rex", "Alise", "Jack"};
-        int[] avatarList = {R.drawable.i1, R.drawable.i2, R.drawable.i3, R.drawable.i4, R.drawable.i5, R.drawable.i6};
-        String[] completedList = {"0", "3", "1", "10"};
-        String[] nextTaskList = {"Clean up kitchen", "Take out garbage", "----", "Buy new TV",};
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        PeopleCustomAdapter adapter = new PeopleCustomAdapter(this, users, avatarList, taskCount, nextTask);
-        listView.setAdapter(adapter);
+       // PeopleCustomAdapter adapter = new PeopleCustomAdapter(this, users, avatarList, taskCount, nextTask);
+//        listView.setAdapter(adapter);
+//        PeopleCustomAdapter peopleAdapter = new PeopleCustomAdapter(this, users, taskCount, nextTask);
+//        listViewPeople.setAdapter(peopleAdapter);
     }
 }
