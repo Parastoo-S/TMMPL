@@ -80,7 +80,7 @@
                 android:layout_weight="0.51"
                 android:text="Assigned user"
                 android:textColor="@android:color/background_dark"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -89,7 +89,7 @@
                 android:layout_weight="0"
                 android:text="assigned"
                 android:textColor="@android:color/background_dark"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
