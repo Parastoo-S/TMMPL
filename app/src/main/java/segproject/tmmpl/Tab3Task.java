@@ -1,7 +1,7 @@
 package segproject.tmmpl;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +13,14 @@ import android.view.ViewGroup;
 public class Tab3Task extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.layout_user_list, container, false);
+        View rootView = inflater.inflate(R.layout.activity_task_page, container, false);
 
         return rootView;
     }
+    //Intent intent  = new Intent(Tab3Task.this, Shopping.class);
+    //intent.putExtra("Fragmentone", 0); //pass zero for Fragmentone.
+    //startActivity(intent);
+
 
 }
 
