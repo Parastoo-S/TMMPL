@@ -5,29 +5,17 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
-
-
-
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -231,6 +218,37 @@ public class TaskPage extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    public void goToTasks(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, TaskPage.class);
+        startActivity(newActivity);
+    }
+    public void goToPeople(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, PeopleActivity.class);
+        startActivity(newActivity);
+    }
+
+    public void goToShopping(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, Shopping.class);
+        startActivity(newActivity);
+    }
+
+    public void goToLogin(MenuItem menuItem){
+        Intent newActivity = new Intent(TaskPage.this, UserLogin.class);
+        startActivity(newActivity);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_new_quick_access, menu);
+        return true;
+    }
+
 
 }
 
