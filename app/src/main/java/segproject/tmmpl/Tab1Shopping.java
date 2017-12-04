@@ -10,6 +10,7 @@ import android.view.ViewGroup;
  * Created by Lori on 2017-12-01.
  */
 public class Tab1Shopping extends Fragment {
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -17,6 +18,7 @@ public class Tab1Shopping extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_shopping, container, false);
 
         return rootView;
+
     }
 
 
