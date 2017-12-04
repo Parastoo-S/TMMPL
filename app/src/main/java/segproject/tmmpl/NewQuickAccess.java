@@ -101,13 +101,13 @@ public class NewQuickAccess extends AppCompatActivity {
             switch (position) {
 
                 case 0:
-                    Tab1Shopping tab1 = new Tab1Shopping();
+                    Tab3Task tab1 = new Tab3Task();
                     return tab1;
                 case 1:
                     Tab2People tab2 = new Tab2People();
                     return tab2;
                 case 2:
-                    Tab3Task tab3 = new Tab3Task();
+                    Tab1Shopping tab3 = new Tab1Shopping();
                     return tab3;
                 default:
                     return null;
@@ -136,11 +136,11 @@ public class NewQuickAccess extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Shopping";
+                    return "Task";
                 case 1:
                     return "People";
                 case 2:
-                    return "Task";
+                    return "Shopping";
             }
             return null;
 
