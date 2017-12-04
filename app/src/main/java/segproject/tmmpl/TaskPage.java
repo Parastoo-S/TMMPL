@@ -50,6 +50,7 @@ public class TaskPage extends AppCompatActivity {
     FloatingActionButton addTaskFab;
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +86,6 @@ public class TaskPage extends AppCompatActivity {
                 startActivity(newActivity);
             }
         });
-
-
 
         databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(User.getActiveUser().getId()).child("assignedTaskIds");
 
@@ -227,7 +226,7 @@ public class TaskPage extends AppCompatActivity {
         startActivity(newActivity);
     }
     public void goToPeople(MenuItem menuItem){
-        Intent newActivity = new Intent(TaskPage.this, PeopleActivity.class);
+        Intent newActivity = new Intent(TaskPage.this, PeopleTaskList.class);
         startActivity(newActivity);
     }
 
