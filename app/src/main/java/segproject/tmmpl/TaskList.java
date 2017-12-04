@@ -54,12 +54,12 @@ public class TaskList extends ArrayAdapter<Task> {
         TextView textViewDescription = (TextView) listViewItem.findViewById(R.id.textViewDescription);
         TextView dueDateTime = (TextView) listViewItem.findViewById(R.id.dueDateTime);
 
-        final TextView status = (TextView) listViewItem.findViewById(R.id.status);
+        //final TextView status = (TextView) listViewItem.findViewById(R.id.status);
 
-        final CheckBox completed = (CheckBox)listViewItem.findViewById(R.id.completed);
+      //  final CheckBox completed = (CheckBox)listViewItem.findViewById(R.id.completed);
         ImageView profilePicImage = (ImageView)listViewItem.findViewById(R.id.profilePicImage);
         Button statusBtn = (Button)listViewItem.findViewById(R.id.statusBtn);
-        completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+      /*  completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
 
             @Override
@@ -80,7 +80,7 @@ public class TaskList extends ArrayAdapter<Task> {
 
                 }
             }
-        });
+        });*/
 
         statusBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
