@@ -126,6 +126,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             @Override
             public void onClick(View v) {
                 Task.getActiveTask().removeAssignedUser();
+                Toast.makeText(getApplicationContext(), "De-allocated User", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -134,6 +135,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             public void onClick(View v) {
                 User allocatedUser = showAssignUserDialog();
                 Task.getActiveTask().setAssignedUser(allocatedUser);
+
 
 
             }
@@ -180,6 +182,7 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
                 assignedUser = user;
                 activeTask.setAssignedUser(user);
                 b.dismiss();
+                Toast.makeText(getApplicationContext(), "Allocated User", Toast.LENGTH_SHORT).show();
             }
         });
 

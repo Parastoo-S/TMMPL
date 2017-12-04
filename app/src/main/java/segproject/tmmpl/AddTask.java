@@ -230,6 +230,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 User user = users.get(i);
                 assignedUser = user;
                 b.dismiss();
+                Toast.makeText(getApplicationContext(), "Allocated User", Toast.LENGTH_SHORT).show();
             }
         });
 

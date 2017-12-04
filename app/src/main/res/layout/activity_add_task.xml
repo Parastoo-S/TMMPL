@@ -72,8 +72,7 @@
             android:id="@+id/pickDateTime"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/calender"
             android:onClick="showDatePickerDialog"
             android:paddingTop="15dp"
@@ -89,8 +88,7 @@
             android:id="@+id/assignUser"
             android:layout_width="70dp"
             android:layout_height="71dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/icon"
             android:paddingTop="55dp"
             android:text="USER"
@@ -100,8 +98,8 @@
             android:id="@+id/saveTaskButton"
             android:layout_width="113dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="135dp"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:text="Add Task" />
 
     </LinearLayout>
