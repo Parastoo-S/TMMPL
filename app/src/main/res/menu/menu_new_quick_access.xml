@@ -6,12 +6,24 @@
 
     <item
         android:id="@+id/Shopping"
-        android:title="Shopping" />
-        <item android:id="@+id/Task"
-            android:title="Task" />
-    <item android:id="@+id/People"
-        android:title="People" />
+        android:title="Shopping"
+        android:onClick="goToShopping"/>
 
+    <item
+        android:id="@+id/Task"
+        android:title="Task"
+        android:onClick="goToTasks"/>
+
+    <item
+        android:id="@+id/People"
+        android:title="People"
+        android:onClick="goToPeople"/>
+
+    <item
+        android:id="@+id/signOut"
+        android:title="Sign Out"
+
+        android:onClick="goToLogin"/>
 
 </menu>
 <!--
