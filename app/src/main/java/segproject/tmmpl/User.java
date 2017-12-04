@@ -11,6 +11,7 @@ public class User {
     private String _id;
     private String _username;
     private String _avatar_id;
+    private int _tasksCompleted;
 //    private
     private static User activeUser;
 
@@ -24,12 +25,14 @@ public class User {
     public User(String id, String username) {
         this._id = id;
         this._username = username;
+        this._tasksCompleted = 0;
 //        _avatar_id = avatar_id;
     }
 
         public User(String username) {
         this._username = username;
 //        _avatar_id = avatar_id;
+            this._tasksCompleted = 0;
     }
 
     public void setId(String id) {
@@ -83,6 +86,14 @@ public class User {
 
     public List<String> getAssignedTasks(){
         return _assignedTasks;
+    }
+
+    public int getTaskCompleted(){
+        return _tasksCompleted;
+    }
+
+    public void incrementTaskCompleted(){
+        _tasksCompleted +=1;
     }
 
 
