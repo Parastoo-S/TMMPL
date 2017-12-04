@@ -226,7 +226,7 @@ public class TaskPage extends AppCompatActivity {
         startActivity(newActivity);
     }
     public void goToPeople(MenuItem menuItem){
-        Intent newActivity = new Intent(TaskPage.this, PeopleActivity.class);
+        Intent newActivity = new Intent(TaskPage.this, PeopleTaskList.class);
         startActivity(newActivity);
     }
 

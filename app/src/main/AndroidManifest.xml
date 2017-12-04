@@ -33,39 +33,14 @@
             android:name=".Shopping"
             android:label="Shopping"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
 
 
         <activity android:name=".NewQuickAccess" />
         <activity android:name=".QuickAccess" />
 
-        <activity android:name=".AddTask" />
-        <activity android:name=".EditTask" />
-
-
-
-
-
         <activity android:name=".UserLogin"
             android:theme="@style/AppTheme.NoActionBar"/>
-
-
-        <activity
-            android:name=".TaskPage"
-            android:label="Tasks"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
     </application>
 
