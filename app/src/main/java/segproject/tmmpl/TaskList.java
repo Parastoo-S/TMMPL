@@ -1,19 +1,28 @@
 package segproject.tmmpl;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,7 +40,7 @@ public class TaskList extends ArrayAdapter<Task> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, final View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_task_list, null, true);
 
@@ -43,13 +52,14 @@ public class TaskList extends ArrayAdapter<Task> {
 
         final CheckBox completed = (CheckBox)listViewItem.findViewById(R.id.completed);
         ImageView profilePicImage = (ImageView)listViewItem.findViewById(R.id.profilePicImage);
-
+        Button statusBtn = (Button)listViewItem.findViewById(R.id.statusBtn);
         completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(completed.isChecked()==false){
+
                     status.setText("incomplete");
 
                 }
@@ -63,9 +73,30 @@ public class TaskList extends ArrayAdapter<Task> {
             }
         });
 
+        statusBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.radiobutton_dialog);
+                List<String> stringList = new ArrayList<>();  // here is list
+                                   /*  for (int i = 0; i < 5; i++) {
+                                         stringList.add("RadioButton " + (i + 1));
+                                     }*/
+                stringList.add("Complete");
+                stringList.add("Inomplete");
+                stringList.add("Defferred");
 
+                RadioGroup rg = (RadioGroup) dialog.findViewById(R.id.radio_group);
 
+                for (int i = 0; i < stringList.size(); i++) {
+                    RadioButton rb = new RadioButton(context); // dynamically creating RadioButton and adding to RadioGroup.
+                    rb.setText(stringList.get(i));
+                    rg.addView(rb);
+                }
 
+                dialog.show();
+            }
+        });
 //        TextView textViewCreatorName = (TextView) listViewItem.findViewById(R.id.textViewCreatorName);
 //        TextView textViewAssignedUserName = (TextView) listViewItem.findViewById(R.id.textViewAssignedUserName);
 

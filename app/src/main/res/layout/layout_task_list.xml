@@ -54,6 +54,13 @@
             android:text="completed"
             android:focusable="false"/>
 
+        <Button
+            android:id="@+id/statusBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:text="Status" />
+
     </LinearLayout>
 
     <!--<TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/textViewPrice" android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" android:text=""/>-->

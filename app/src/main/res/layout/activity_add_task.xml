@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/babyBlue"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -69,14 +70,15 @@
 
         <Button
             android:id="@+id/pickDateTime"
-            android:layout_width="75dp"
-            android:layout_height="66dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/calender"
             android:onClick="showDatePickerDialog"
-            android:text="Date/Time"
-            android:textSize="10sp" />
+            android:paddingTop="15dp"
+            android:text="Date Time"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/formatted"
@@ -85,13 +87,14 @@
 
         <Button
             android:id="@+id/assignUser"
-            android:layout_width="75dp"
-            android:layout_height="66dp"
+            android:layout_width="70dp"
+            android:layout_height="71dp"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/icon"
-            android:paddingTop="30dp"
-            android:text="USER" />
+            android:paddingTop="55dp"
+            android:text="USER"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/saveTaskButton"
