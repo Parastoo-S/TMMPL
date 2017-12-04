@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class PeopleCustomAdapter extends ArrayAdapter {
     private final Activity context;
     private final ArrayList<User> myUsers;
+    private final ArrayList<Task> myTasks;
     int[] avatars = {
             R.mipmap.i1,
             R.mipmap.i2,
@@ -38,11 +39,12 @@ public class PeopleCustomAdapter extends ArrayAdapter {
     DatabaseReference databaseUserTasks;
 //    private final ArrayList<Integer> completed;
 //    private final ArrayList<String> nextTasks;
-
-    public PeopleCustomAdapter(Activity context, ArrayList<User> users){
+    final ArrayList<Task> tasks = new ArrayList<>();
+    public PeopleCustomAdapter(Activity context, ArrayList<User> users,ArrayList<Task> tasks ){
         super(context, R.layout.people_task_layout, users);
         this.context = context;
         this.myUsers = users;
+        this.myTasks = tasks;
     }
 
 //    public PeopleCustomAdapter(Activity context, ArrayList<User> userList, ArrayList<Integer> completedList, ArrayList<String> nextTaskList) {
@@ -87,6 +89,7 @@ public class PeopleCustomAdapter extends ArrayAdapter {
 
         }
 
+
         taskCount.add(2);
         taskCount.add(2);
         taskCount.add(2);
@@ -103,7 +106,8 @@ public class PeopleCustomAdapter extends ArrayAdapter {
         userNameTextField.setText(myUsers.get(position).getUsername());
         taskCountTextField.setText("Allocated Tasks: " + taskCount.get(position));
         userImage.setImageResource(avatars[position% avatars.length]);
-        //nextTaskTextField.setText("Next Task: " + nextTasks.get(position));
+        Task task = myTasks.get(position % myTasks.size());
+        nextTaskTextField.setText("Next Task: " + task.getTaskName());
 
 
         return rowView;
