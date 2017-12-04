@@ -22,6 +22,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,6 +32,8 @@ import java.util.List;
 public class TaskList extends ArrayAdapter<Task> {
     private Activity context;
     List<Task> tasks;
+    Task clickedTask;
+
 
     public TaskList(Activity context, List<Task> tasks) {
         super(context, R.layout.layout_task_list, tasks);
@@ -41,6 +46,7 @@ public class TaskList extends ArrayAdapter<Task> {
 
     @Override
     public View getView(int position, final View convertView, ViewGroup parent) {
+        final Task clickedTask = tasks.get(position);
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.layout_task_list, null, true);
 
@@ -65,6 +71,9 @@ public class TaskList extends ArrayAdapter<Task> {
                 }
 
                 if(completed.isChecked()==true) {
+
+                    showStatusDialog(clickedTask);
+
                     status.setText("Complete");
                     Toast.makeText(getContext(), "Task Completed",
                             Toast.LENGTH_LONG).show();
@@ -125,6 +134,22 @@ public class TaskList extends ArrayAdapter<Task> {
         dueDateTime.setText("Deadline: " + mYear + "/" + mMonth + "/" + mDay + "at "+ mHour + ":" + mMinute);
 
         return listViewItem;
+    }
+
+
+    public void showStatusDialog(Task task){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.set_status_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        RadioButton complete = (RadioButton) dialogView.findViewById(R.id.complete);
+        RadioButton incomplete = (RadioButton) dialogView.findViewById(R.id.inComplete);
+        RadioButton deffered = (RadioButton) dialogView.findViewById(R.id.deferred);
+        Button setStatus = (Button) dialogView.findViewById(R.id.deferred);
+
+
+
     }
 
 }
