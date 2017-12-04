@@ -47,8 +47,6 @@ public class PeopleTaskList extends AppCompatActivity {
                     users.add(user);
                 }
 
-                PeopleCustomAdapter peopleAdapter = new PeopleCustomAdapter(PeopleTaskList.this,users);
-                listViewPeople.setAdapter(peopleAdapter);
             }
 
             @Override
@@ -57,24 +55,28 @@ public class PeopleTaskList extends AppCompatActivity {
             }
         });
 
-//        databaseNextTask = FirebaseDatabase.getInstance().getReference("tasks");
+
+        databaseNextTask = FirebaseDatabase.getInstance().getReference("tasks");
 //
-//        databaseNextTask.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                tasks.clear();
-//                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-//                    Task task = postSnapshot.getValue(Task.class);
-//                    tasks.add(task);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//
+        databaseNextTask.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                tasks.clear();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    Task task = postSnapshot.getValue(Task.class);
+                    tasks.add(task);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        PeopleCustomAdapter peopleAdapter = new PeopleCustomAdapter(PeopleTaskList.this,users, tasks);
+        listViewPeople.setAdapter(peopleAdapter);
 //
 //        for(User user : users){
 //            databaseTaskCount = FirebaseDatabase.getInstance().getReference("users").child(user.getId()).child("assignedTaskIds");
