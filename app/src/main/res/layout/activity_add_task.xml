@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:text="Name of the Task:"
+            android:text="Name of the Task (maximum 12 characters):"
             android:textColor="@android:color/background_dark" />
 
         <EditText

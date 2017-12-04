@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -62,6 +63,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         currentUser = User.getActiveUser();
         editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
         editTextDescription = (EditText) findViewById(R.id.editTextDescription);
+
+        editTextTaskName.setFilters(new InputFilter[] {new InputFilter.LengthFilter(12)});
 
         editTextEquipment = (EditText) findViewById(R.id.editTextEquipment);
 

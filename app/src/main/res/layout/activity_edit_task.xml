@@ -24,6 +24,7 @@
 
 
     <EditText
+        android:maxLength="12"
         android:id="@+id/editTaskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
