@@ -33,6 +33,7 @@ public class TaskList extends ArrayAdapter<Task> {
     private Activity context;
     List<Task> tasks;
     Task clickedTask;
+    DatabaseReference databaseTasks;
 
 
     public TaskList(Activity context, List<Task> tasks) {
@@ -138,7 +139,7 @@ public class TaskList extends ArrayAdapter<Task> {
 
 
     public void showStatusDialog(Task task){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.set_status_dialog, null);
         dialogBuilder.setView(dialogView);
@@ -147,8 +148,23 @@ public class TaskList extends ArrayAdapter<Task> {
         RadioButton incomplete = (RadioButton) dialogView.findViewById(R.id.inComplete);
         RadioButton deffered = (RadioButton) dialogView.findViewById(R.id.deferred);
         Button setStatus = (Button) dialogView.findViewById(R.id.deferred);
+        final RadioGroup radioGroup = (RadioGroup) dialogView.findViewById(R.id.radioGroup);
 
 
+        setStatus.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // get selected radio button from radioGroup
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                // find the radio button by returned id
+                RadioButton radioButton = (RadioButton)dialogView.findViewById(selectedId);
+                radioButton.getText();
+
+                Toast.makeText(TaskList.this,, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
