@@ -151,20 +151,20 @@ public class TaskList extends ArrayAdapter<Task> {
         final RadioGroup radioGroup = (RadioGroup) dialogView.findViewById(R.id.radioGroup);
 
 
-        setStatus.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-
-                // find the radio button by returned id
-                RadioButton radioButton = (RadioButton)dialogView.findViewById(selectedId);
-                radioButton.getText();
-
-                Toast.makeText(TaskList.this,, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        setStatus.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // get selected radio button from radioGroup
+//                int selectedId = radioGroup.getCheckedRadioButtonId();
+//
+//                // find the radio button by returned id
+//                RadioButton radioButton = (RadioButton)dialogView.findViewById(selectedId);
+//                radioButton.getText();
+//
+//                Toast.makeText(TaskList.this,, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 
