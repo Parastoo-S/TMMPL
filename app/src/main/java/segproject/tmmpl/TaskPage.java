@@ -63,6 +63,9 @@ public class TaskPage extends AppCompatActivity {
     FloatingActionButton addTaskFab;
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
+
+    Button testButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +88,16 @@ public class TaskPage extends AppCompatActivity {
 
         //buttonShowUsersTasks = (Button) findViewById(R.id.showSwitch);
 
+        testButton = (Button) findViewById(R.id.button4);
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newActivity = new Intent(TaskPage.this, PeopleTaskList.class);
+                startActivity(newActivity);
+            }
+        });
+
         addTaskFab = (FloatingActionButton) findViewById(R.id.addTaskFab);
 
 
@@ -98,8 +111,6 @@ public class TaskPage extends AppCompatActivity {
                 startActivity(newActivity);
             }
         });
-
-
 
         databaseUserTasks = FirebaseDatabase.getInstance().getReference("users").child(User.getActiveUser().getId()).child("assignedTaskIds");
 

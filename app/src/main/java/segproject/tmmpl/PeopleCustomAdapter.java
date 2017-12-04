@@ -8,18 +8,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by trist on 2017-11-22.
  */
 
 public class PeopleCustomAdapter extends ArrayAdapter {
     private final Context context;
-    private final String[] myUsers;
+    private final ArrayList<User> myUsers;
     private final int[] avatars;
-    private final String[] completed;
-    private final String[] nextTasks;
+    private final ArrayList<Integer> completed;
+    private final ArrayList<String> nextTasks;
 
-    public PeopleCustomAdapter(Context context, String[] userList, int[] avatarList, String[] completedList, String[] nextTaskList) {
+    public PeopleCustomAdapter(Context context, ArrayList<User> userList, int[] avatarList, ArrayList<Integer> completedList, ArrayList<String> nextTaskList) {
         super(context, R.layout.people_task_layout, userList);
         this.context = context;
         this.myUsers = userList;
@@ -37,10 +39,10 @@ public class PeopleCustomAdapter extends ArrayAdapter {
         TextView nextTaskTextField = (TextView) rowView.findViewById(R.id.nextTask);
         ImageView userImage = (ImageView) rowView.findViewById(R.id.icon);
 
-        userNameTextField.setText(myUsers[position]);
-        taskCountTextField.setText("Allocated Tasks: " + completed[position]);
-        userImage.setImageResource(avatars[position]);
-        nextTaskTextField.setText("Next Task: " + nextTasks[position]);
+        userNameTextField.setText(myUsers.get(position).getUsername());
+        taskCountTextField.setText("Allocated Tasks: " + completed.get(position));
+        userImage.setImageResource(avatars[position % avatars.length]);
+        nextTaskTextField.setText("Next Task: " + nextTasks.get(position));
 
 
         return rowView;

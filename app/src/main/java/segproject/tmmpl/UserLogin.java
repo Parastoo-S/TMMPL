@@ -89,7 +89,6 @@ public class UserLogin extends AppCompatActivity {
        // role = (Spinner) findViewById(R.id.role);
 
 
-
         //adding an onclicklistener to button
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override

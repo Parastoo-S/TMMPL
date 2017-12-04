@@ -24,8 +24,8 @@
              android:label="Tasks"/>
         <activity android:name=".AddTask" />
         <activity android:name=".EditTask" />
+        <activity android:name=".PeopleTaskList"/>
         <activity android:name=".ViewTask"></activity>
-
 
 
         <activity
