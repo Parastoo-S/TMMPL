@@ -19,6 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity for shopping page
+ */
 public class Shopping extends AppCompatActivity {
     //this code is closely following lab 7
 

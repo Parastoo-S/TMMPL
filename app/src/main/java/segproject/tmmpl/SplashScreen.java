@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * This activity is for splash screen
+ * this code was inspired from the following links
+ * https://android.jlelse.eu/right-way-to-create-splash-screen-on-android-e7f1709ba154
+ www.youtube.com/watch?v=s8nuJpyQqVc
+ */
 public class SplashScreen extends AppCompatActivity {
-    //this code was inspired from the following links
-    // https://android.jlelse.eu/right-way-to-create-splash-screen-on-android-e7f1709ba154
-    //www.youtube.com/watch?v=s8nuJpyQqVc
+
+
 
     protected void onPause(){
         super.onPause();

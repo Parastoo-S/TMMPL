@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * Adapter for shopping page
+ */
 public class ShoppingListAdapter extends ArrayAdapter<Item> {
 
     private Activity context;
