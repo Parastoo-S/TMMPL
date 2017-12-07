@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * Created by trist on 2017-11-22.
+ * Adaptor for people page
  */
 
 public class PeopleCustomAdapter extends ArrayAdapter {
@@ -37,8 +37,6 @@ public class PeopleCustomAdapter extends ArrayAdapter {
     ArrayList<String> nextTaskName = new ArrayList<>();
     ArrayList<String> taskIds = new ArrayList<>();
     DatabaseReference databaseUserTasks;
-//    private final ArrayList<Integer> completed;
-//    private final ArrayList<String> nextTasks;
     final ArrayList<Task> tasks = new ArrayList<>();
     public PeopleCustomAdapter(Activity context, ArrayList<User> users,ArrayList<Task> tasks ){
         super(context, R.layout.people_task_layout, users);
@@ -47,21 +45,17 @@ public class PeopleCustomAdapter extends ArrayAdapter {
         this.myTasks = tasks;
     }
 
-//    public PeopleCustomAdapter(Activity context, ArrayList<User> userList, ArrayList<Integer> completedList, ArrayList<String> nextTaskList) {
-//        super(context, R.layout.people_task_layout, userList);
-//        this.context = context;
-//        this.myUsers = userList;
-//        this.completed = completedList;
-//        this.nextTasks = nextTaskList;
-//    }
-
+    /**
+     * inflates the list with the data from database
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
-//       LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View rowView = inflater.inflate(R.layout.people_task_layout, parent, false);
 
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.people_task_layout, null, true);
-
 
         for(User user : myUsers) {
 
@@ -86,16 +80,15 @@ public class PeopleCustomAdapter extends ArrayAdapter {
                 }
             });
 
-
         }
 
 
         taskCount.add(2);
+        taskCount.add(3);
         taskCount.add(2);
+        taskCount.add(1);
         taskCount.add(2);
-        taskCount.add(2);
-        taskCount.add(2);
-        taskCount.add(2);
+        taskCount.add(1);
 
 
         TextView userNameTextField = (TextView) rowView.findViewById(R.id.userName);
@@ -108,7 +101,6 @@ public class PeopleCustomAdapter extends ArrayAdapter {
         userImage.setImageResource(avatars[position% avatars.length]);
         Task task = myTasks.get(position % myTasks.size());
         nextTaskTextField.setText("Next Task: " + task.getTaskName());
-
 
         return rowView;
     }

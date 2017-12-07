@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PeopleActivity" />
+
          <activity android:name=".TaskPage"
              android:label="Tasks"/>
         <activity android:name=".AddTask" />
@@ -28,16 +28,11 @@
         <activity android:name=".PeopleTaskList"/>
         <activity android:name=".ViewTask"></activity>
 
-       
         <activity
             android:name=".Shopping"
             android:label="Shopping"
             >
         </activity>
-
-
-        <activity android:name=".NewQuickAccess" />
-        <activity android:name=".QuickAccess" />
 
         <activity android:name=".UserLogin"
             android:theme="@style/AppTheme.NoActionBar"/>

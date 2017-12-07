@@ -30,6 +30,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * This activity for viewing a task
+ */
 public class ViewTask extends AppCompatActivity {
 
     private Task activeTask;
@@ -43,7 +46,10 @@ public class ViewTask extends AppCompatActivity {
     ImageView deleteButton;
     TextView equipmentList;
 
-
+    /**
+     * Populates the page with data from database
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +58,6 @@ public class ViewTask extends AppCompatActivity {
         setContentView(R.layout.activity_view_task);
 
         activeTask = Task.getActiveTask();
-//        Task task = (Task) getIntent().getExtras().getSerializable("activeUser");
-//        Intent intent = getIntent();
-//        activeTask = (Task) intent.getSerializableExtra("activeTask");
         taskTitle = (TextView) findViewById(R.id.taskTitle);
         assignedUserName = (TextView) findViewById(R.id.assignedUserName);
         description = (EditText) findViewById(R.id.description);
@@ -69,7 +72,6 @@ public class ViewTask extends AppCompatActivity {
 
         taskTitle.setText(activeTask.getTaskName());
 
-        //** these two lines give exceptions, don't know why
         creatorName.setText(activeTask.getCreatorUser().getUsername());
         if (activeTask.getAssignedUser() != null){
             assignedUserName.setText(activeTask.getAssignedUser().getUsername());
@@ -78,23 +80,7 @@ public class ViewTask extends AppCompatActivity {
             assignedUserName.setText("No Users assigned");
         }
 
-
-
         description.setText(activeTask.getDescription());
-/*
-        ArrayList<String> arrayList;
-
-        ArrayAdapter<String> adapter;
-        int clickCounter=0;
-
-        ListView equipmentList2 = (ListView)findViewById(R.id.equipmentList2);
-        String[] items={"a","b","b"};
-        arrayList=new ArrayList<>(Arrays.asList(items));
-        adapter=new ArrayAdapter<String>(this,R.layout.list_item,R.id.txtItem,arrayList);
-        equipmentList2.setAdapter(adapter);
-*/
-
-        //   arrayList.add(newItem);
 
         String equipments="";
         for (String s : activeTask.getEquipments())
@@ -124,8 +110,6 @@ public class ViewTask extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ViewTask.this, EditTask.class);
                 startActivity(intent);
-//                intent.putExtra("activeTask", activeTask);
-//                startActivityForResult(intent, 1);
             }
         });
 
@@ -163,19 +147,6 @@ public class ViewTask extends AppCompatActivity {
         });
 
     }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == 1){
-//            if(resultCode == RESULT_OK) {
-//                if (data != null) {
-//                    activeTask = (Task) data.getSerializableExtra("updatedTask");
-////                    taskTitle.setText(activeTask.getTaskName());
-//                }
-//            }
-//        }
-//    }
 
     @Override
     protected void onStart() {
@@ -184,7 +155,6 @@ public class ViewTask extends AppCompatActivity {
 
         activeTask = Task.getActiveTask();
         taskTitle.setText(activeTask.getTaskName());
-//        assignedUserName.setText(activeTask.getAssignedUser().getUsername());
         description.setText(activeTask.getDescription());
 
 
@@ -209,7 +179,11 @@ public class ViewTask extends AppCompatActivity {
     }
 
 
-
+    /**
+     * This method deletes a task from database
+     * @param id
+     * @return
+     */
 
     private boolean deleteTask(String id) {
 

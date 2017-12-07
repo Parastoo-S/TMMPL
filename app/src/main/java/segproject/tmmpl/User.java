@@ -6,16 +6,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Class for users
+ */
 public class User {
 
     private String _id;
     private String _username;
-    private String _avatar_id;
     private int _tasksCompleted;
-//    private
     private static User activeUser;
 
-
+//associations
     private ArrayList<Task> createdTasks = new ArrayList<>();
     private ArrayList<String> _assignedTasks = new ArrayList<>();
 
@@ -26,12 +27,10 @@ public class User {
         this._id = id;
         this._username = username;
         this._tasksCompleted = 0;
-//        _avatar_id = avatar_id;
     }
 
         public User(String username) {
         this._username = username;
-//        _avatar_id = avatar_id;
             this._tasksCompleted = 0;
     }
 
@@ -48,12 +47,6 @@ public class User {
     public String getUsername() {
         return _username;
     }
-//    public void setAvatarId(String avatar_id) {
-//        _avatar_id = avatar_id;
-//    }
-//    public String getAvatarId() {
-//        return _avatar_id;
-//    }
 
     public static void setActiveUser(User user){
         activeUser = user;

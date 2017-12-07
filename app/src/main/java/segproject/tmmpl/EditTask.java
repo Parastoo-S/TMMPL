@@ -32,6 +32,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Activity for edit task
+ */
 public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
     int day, month, year, hour, minute;
     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
@@ -45,12 +48,14 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
     User assignedUser;
 
 
+    /**
+     * This method initializes the components of the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
-//        Intent intent = getIntent();
-//        activeTask = (Task) intent.getSerializableExtra("activeTask");
         activeTask = Task.getActiveTask();
 
         final EditText editTaskTitle = (EditText) findViewById(R.id.editTaskTitle);
@@ -112,16 +117,10 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
 
 
                         updateTask(activeTask.getTaskId(), activeTask);
-//
-//                Intent intent = new Intent();
-//                intent.putExtra("updatedTask", activeTask);
-//
-//                setResult(RESULT_OK, intent);
                         finish();
 
                     }
             });
-//These 2 event listeners do not work
         deallocateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,15 +134,15 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             public void onClick(View v) {
                 User allocatedUser = showAssignUserDialog();
                 Task.getActiveTask().setAssignedUser(allocatedUser);
-
-
-
             }
         });
 
     }
 
-
+    /**
+     * Dialog to allow user to assign a task to another user
+     * @return User
+     */
     private User showAssignUserDialog(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -165,12 +164,9 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
-
         UserList usersAdapter = new UserList(EditTask.this,users);
-
         possibleAssignees.setAdapter(usersAdapter);
         dialogBuilder.setView(dialogView);
-
 
         final AlertDialog b = dialogBuilder.create();
         b.show();
@@ -189,6 +185,12 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         return assignedUser;
 
     }
+
+    /**
+     * This method receives the updated task and updates the database
+     * @param id
+     * @param task
+     */
     private void updateTask(String id, Task task) {
 
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(id);
@@ -199,6 +201,16 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
     }
 
 
+    /**
+     * This method was influenced by following the following tutorial on youtube
+     * https://www.youtube.com/watch?v=a_Ap6T4RlYU&t=483s
+     *
+     * This method opens uo the date pickers for deadline of the task
+     * @param datePicker
+     * @param i
+     * @param i1
+     * @param i2
+     */
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2){
         yearFinal = i;
@@ -215,6 +227,15 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
 
     }
 
+    /**
+     * This method was influenced by following the following tutorial on youtube
+     * https://www.youtube.com/watch?v=a_Ap6T4RlYU&t=483s
+     *
+     * This method opens uo the time pickers for deadline of the task
+     * @param timePicker
+     * @param i
+     * @param i1
+     */
     @Override
     public void onTimeSet(TimePicker timePicker, int i, int i1){
         hourFinal = i;
@@ -223,9 +244,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         Calendar c = Calendar.getInstance();
         c.set(yearFinal, monthFinal, dayFinal, hourFinal, minuteFinal);
         dueDate = c.getTimeInMillis();
-//        int dateTime = yearFinal + monthFinal + dayFinal + hourFinal + minuteFinal;
-//        datesPicked.setText(String.valueOf(startDate));
-
 
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
@@ -234,7 +252,6 @@ public class EditTask extends AppCompatActivity implements DatePickerDialog.OnDa
         int mMinute = c.get(Calendar.MINUTE);
 
         formatted.setText("Due Date Picked: " + mYear + "/" + mMonth + "/" + mDay + " at "+ mHour + ":" + mMinute);
-
 
     }
 }

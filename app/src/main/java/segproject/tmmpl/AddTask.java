@@ -36,6 +36,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * This Activity is for adding tasks
+ */
+
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     EditText editTextTaskName;
     EditText editTextDescription;
@@ -54,12 +58,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     ArrayList<User> users;
     User currentUser;
     User assignedUser;
+
+    /**
+     * This method initiates the View elements as well as the database for tasks
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-//        Intent intent = getIntent();
-//        currentUser = (User) intent.getSerializableExtra("activeUser");
         currentUser = User.getActiveUser();
         editTextTaskName = (EditText) findViewById(R.id.editTextTaskName);
         editTextDescription = (EditText) findViewById(R.id.editTextDescription);
@@ -108,6 +115,16 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         });
     }
 
+    /**
+     * This method was influenced by following the following tutorial on youtube
+     * https://www.youtube.com/watch?v=a_Ap6T4RlYU&t=483s
+     *
+     * This method opens uo the date pickers for deadline of the task
+     * @param datePicker
+     * @param i
+     * @param i1
+     * @param i2
+     */
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2){
         yearFinal = i;
@@ -125,6 +142,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     }
 
 
+    /**
+     * This method was influenced by following the following tutorial on youtube
+     * https://www.youtube.com/watch?v=a_Ap6T4RlYU&t=483s
+     *
+     * This method opens uo the time pickers for deadline of the task
+     * @param timePicker
+     * @param i
+     * @param i1
+     */
     @Override
     public void onTimeSet(TimePicker timePicker, int i, int i1){
         hourFinal = i;
@@ -147,11 +173,14 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
 
     }
+
+    /**
+     * Adds the information provided to save teh new task on firebase
+     */
     private void addTask() {
         String name = editTextTaskName.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
 
-       // User activeUser = Singleton.getInstance();
 
         List<String> equipment = Arrays.asList(editTextEquipment.getText().toString().split(","));
 
@@ -159,43 +188,26 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         if(!TextUtils.isEmpty(name)){
             String id = databaseTasks.push().getKey();
             Task task = new Task(id, name, description, currentUser, assignedUser, dueDate,equipment);
-//            currentUser.addCreatedTask(task);
-//            task.setCreator(currentUser);
 
             databaseTasks.child(id).setValue(task);
 
-//            currentUser.addAssignedTask(task.getTaskId());
-
             databaseUsers.child(User.getActiveUser().getId()).child("assignedTaskIds").push().setValue(task.getTaskId());
-
-           // User.getActiveUser().addAssignedTask(task);
-
-//            for(String add : equipment){
-//                databaseTasks.child(id).child("equipment").push().setValue(add);
-//            }
-           // for(User current : databaseTasks.child("users")){
-
-           //
             editTextTaskName.setText("");
             editTextDescription.setText("");
-
-           // task.addCreatorUser(User.getActiveUser());
-
-
-
 
             editTextEquipment.setText("");
 
             Toast.makeText(this,"Task added", Toast.LENGTH_LONG).show();
-//            Toast.makeText(this,task.getCreatorUser().getUsername(), Toast.LENGTH_LONG).show();
-//            Toast.makeText(this,task.getTaskName(), Toast.LENGTH_LONG).show();
-        } else{
 
+        } else{
             Toast.makeText(this,"Please fill out all sections", Toast.LENGTH_LONG).show();
         }
 
     }
 
+    /**
+     * The method to give suggestions for assigning user to a task
+     */
     private void showAssignUserDialog(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -238,6 +250,4 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         });
 
     }
-
-
 }

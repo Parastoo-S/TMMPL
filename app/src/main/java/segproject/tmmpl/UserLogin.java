@@ -41,16 +41,17 @@ import java.util.List;
 
 import static android.R.attr.data;
 
+/**
+ * Activity for user login page
+ */
 public class UserLogin extends AppCompatActivity {
     EditText editTextUsername;
 
-    EditText editAvatartId;
     Button buttonAddUser;
     ListView listViewUsers;
     DatabaseReference databaseUsers;
     List<User> users;
     ImageView buttonSetAvatar;
-    Spinner role;
 
     private DrawerLayout nDrawerLayout;
     private ActionBarDrawerToggle nToggle;
@@ -58,17 +59,6 @@ public class UserLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         nDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         nToggle = new ActionBarDrawerToggle(this, nDrawerLayout, R.string.open ,R.string.close );
@@ -86,10 +76,9 @@ public class UserLogin extends AppCompatActivity {
         buttonAddUser = (Button) findViewById(R.id.newUser);
         databaseUsers = FirebaseDatabase.getInstance().getReference("users");
         users = new ArrayList<>();
-       // role = (Spinner) findViewById(R.id.role);
 
 
-        //adding an onclicklistener to button
+        //onclicklistener to for new user button
         buttonAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,12 +99,9 @@ public class UserLogin extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 User user = users.get(i);
-                //User currentUser = Singleton.getInstance(user);
                 user.setActiveUser(user);
 
-//                Toast.makeText(getApplicationContext(), currentUser.getUsername(), Toast.LENGTH_LONG).show();
                 Intent newActivity = new Intent(UserLogin.this, TaskPage.class);
-//                newActivity.putExtra("activeUser", user);
                 startActivity(newActivity);
 
             }
@@ -123,29 +109,9 @@ public class UserLogin extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_user_login, menu);
-//        return true;
-//    }
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
+    /**
+     * This method updates the user list on start
+     */
     @Override
     protected void onStart() {
 
@@ -171,6 +137,11 @@ public class UserLogin extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dialog to allow users update or delete a user
+     * @param userId
+     * @param username
+     */
     private void showUpdateDeleteDialog(final String userId, String username) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -179,13 +150,10 @@ public class UserLogin extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText editTextUsername = (EditText) dialogView.findViewById(R.id.editTextUsername);
-//        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdateUser);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteUser);
         final TextView title = (TextView) dialogView.findViewById(R.id.selfUsername);
-//        final ImageView avatar = (ImageView) dialogView.findViewById(R.id.editAvatar);
 
-//        dialogBuilder.setTitle(username);
         title.setText(username);
         final AlertDialog b = dialogBuilder.create();
         b.show();
@@ -194,7 +162,6 @@ public class UserLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = editTextUsername.getText().toString().trim();
-//                double price = Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
                 if (!TextUtils.isEmpty(name)) {
                     updateUser(userId, name);
                     b.dismiss();
@@ -211,6 +178,9 @@ public class UserLogin extends AppCompatActivity {
         });
     }
 
+    /**
+     * Dialog to allow users create an account
+     */
     private void showNewUserDialog() {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -219,20 +189,9 @@ public class UserLogin extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText newTextUsername = (EditText) dialogView.findViewById(R.id.editTextUsername);
-//        final EditText editTextPrice  = (EditText) dialogView.findViewById(R.id.editTextPrice);
         final Button addButton = (Button) dialogView.findViewById(R.id.addButton);
-//        final Button buttonDelete = (Button) dialogView.findViewById(R.id.buttonDeleteUser);
-
-//        dialogBuilder.setTitle(username);
         final AlertDialog b = dialogBuilder.create();
         b.show();
-        // TODO: FiX this
-//        buttonSetAvatar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                selectAvatar();
-//            }
-//        });
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,40 +202,12 @@ public class UserLogin extends AppCompatActivity {
         });
 
     }
-//  // TODO: tifosdlfnjds, 
-//    private void selectAvatar(){
-//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-//        LayoutInflater inflater = getLayoutInflater();
-//        final View dialogView2 = inflater.inflate(R.layout.activity_set_avatar, null);
-//        dialogBuilder.setView(dialogView2);
-//
-//        String avatarName = "i1";
-//        switch (data.getIntExtra("imageID",R.id.i1)) {
-//            case R.id.i1:
-//                avatarName = "i1";
-//                break;
-//            case R.id.i2:
-//                avatarName = "i2";
-//                break;
-//            case R.id.i3:
-//                avatarName = "i3";
-//                break;
-//            case R.id.i4:
-//                avatarName = "i4";
-//                break;
-//            case R.id.i5:
-//                avatarName = "i5";
-//                break;
-//            case R.id.i6:
-//                avatarName = "i6";
-//                break;
-//            default:
-//                avatarName = "i1";
-//                break;
-//        }
-//    }
 
-
+    /**
+     * Method that updates database with user's updated information
+     * @param id
+     * @param username
+     */
     private void updateUser(String id, String username) {
 
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("users").child(id);
@@ -288,7 +219,11 @@ public class UserLogin extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "User Updated", Toast.LENGTH_LONG).show();
     }
 
-
+    /**
+     * this method deletes a user from database
+     * @param id
+     * @return
+     */
     private boolean deleteUser(String id) {
 
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("users").child(id);
@@ -297,10 +232,12 @@ public class UserLogin extends AppCompatActivity {
         return true;
     }
 
-
+    /**
+     * This method adds a user to the database
+     * @param name
+     */
     private void addUser(String name) {
         String username = name;
-//        double price=Double.parseDouble(String.valueOf(editTextPrice.getText().toString()));
 
         if(!TextUtils.isEmpty(username)){
             String id = databaseUsers.push().getKey();
@@ -308,8 +245,6 @@ public class UserLogin extends AppCompatActivity {
 
             databaseUsers.child(id).setValue(user);
 
-//                .setText("");
-//            editTextPrice.setText("");
             Toast.makeText(this,"User added", Toast.LENGTH_LONG).show();
         } else{
 
@@ -318,10 +253,5 @@ public class UserLogin extends AppCompatActivity {
 
     }
 
-
-    public void goToQuickAccess(View view){
-        Intent startNewActivity = new Intent(this, QuickAccess.class);
-        startActivity(startNewActivity);
-    }
 
 }

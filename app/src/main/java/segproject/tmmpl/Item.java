@@ -1,15 +1,15 @@
 package segproject.tmmpl;
 
 /**
- * Created by Lori on 2017-12-02.
+ * Class for items that belong to the shopping list
  */
 
 public class Item {
     private String _itemId;
     private String _itemName;
+    //constructors
 
     public Item(){
-
     }
 
     public Item(String itemName){

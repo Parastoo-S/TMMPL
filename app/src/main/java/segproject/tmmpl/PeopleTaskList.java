@@ -12,19 +12,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static segproject.tmmpl.R.id.list;
-import static segproject.tmmpl.R.id.listViewTasks;
-
+/**
+ * Activity for people page
+ */
 public class PeopleTaskList extends AppCompatActivity {
 
-    DatabaseReference databaseTaskCount;
     DatabaseReference databaseUsers;
     DatabaseReference databaseNextTask;
     ArrayList<User> users = new ArrayList<>();
-    ArrayList<Integer> taskCount = new ArrayList<>();
-    ArrayList<String> nextTask = new ArrayList<>();
 
-    ArrayList<String> taskIds = new ArrayList<>();
     ArrayList<Task> tasks = new ArrayList<>();
 
     ListView listViewPeople;
@@ -74,55 +70,7 @@ public class PeopleTaskList extends AppCompatActivity {
             }
         });
 
-
         PeopleCustomAdapter peopleAdapter = new PeopleCustomAdapter(PeopleTaskList.this,users, tasks);
         listViewPeople.setAdapter(peopleAdapter);
-//
-//        for(User user : users){
-//            databaseTaskCount = FirebaseDatabase.getInstance().getReference("users").child(user.getId()).child("assignedTaskIds");
-//
-//            databaseTaskCount.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    taskIds.clear();
-//                    Integer count = 0;
-//                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-//                        taskIds.add(postSnapshot.getValue().toString());
-//                        count++;
-//                    }
-//                    taskCount.add(count);
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            });
-//
-//            long minDueDate = Long.MAX_VALUE;
-//            String closestTask = "";
-//            for(Task task : tasks){
-//                for(String id : taskIds){
-//                    if(task.getTaskId().equals(id)){
-//                        if(task.getDueDate() < minDueDate){
-//                            closestTask = task.getTaskName();
-//                            minDueDate = task.getDueDate();
-//                        }
-//                    }
-//                }
-//            }
-//            nextTask.add(closestTask);
-//        }
-
-       // int[] avatarList = {R.drawable.i1, R.drawable.i2, R.drawable.i3, R.drawable.i4, R.drawable.i5, R.drawable.i6};
-
-//        ListView listView = (ListView) findViewById(R.id.list);
-//
-//        PeopleCustomAdapter adapter = new PeopleCustomAdapter(this, users);
-
-       // PeopleCustomAdapter adapter = new PeopleCustomAdapter(this, users, avatarList, taskCount, nextTask);
-//        listView.setAdapter(adapter);
-//        PeopleCustomAdapter peopleAdapter = new PeopleCustomAdapter(this, users, taskCount, nextTask);
-//        listViewPeople.setAdapter(peopleAdapter);
     }
 }

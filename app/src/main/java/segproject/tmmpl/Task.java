@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Parastoo on 11/25/2017.
+ * Class for Task
  */
 
 public class Task {
@@ -23,11 +23,11 @@ public class Task {
     private Boolean _completed;
 
     private Collection<User> assignedUser;
-//    private User creatorUser;
 
+    //static variable to keep track of which user is using the app
     private static Task activeTask;
 
-
+    //constructor
     public Task() {
     }
 
